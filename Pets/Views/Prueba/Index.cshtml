@@ -1,0 +1,71 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Index</title>
+
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/datepicker.css" rel="stylesheet" />
+
+    <link href="~/Content/FontAwesome/all.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/locales/bootstrap-datepicker.es.min.js"></script>
+
+
+</head>
+<body>
+    <button class="btn btn-primary">Uno<i class="fa fa-calendar-alt fa-lg"></i></button>
+
+
+
+    <input type="text" class="datepicker" value="" id="datepicker">
+
+    <div class="input-group fecha-custom">
+        <input type="text" class="form-control datepicker" id="fechaDocumento" name="fecha"
+               placeholder="DD/MM/YYYY" 
+               required readonly />
+        <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">
+                <i class="fa fa-calendar-alt fa-lg"></i>
+            </span>
+        </div>
+    </div>
+
+    <script>
+
+        var myDate = new Date();
+        var dd = myDate.getDate();
+
+        var mm = myDate.getMonth() + 1;
+        var yyyy = myDate.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        myDate = dd + '/' + mm + '/' + yyyy;
+
+
+        $('.datepicker').datepicker(
+            {
+                format: 'dd/mm/yyyy',
+                todayHighlight: true,
+                autoclose: true,
+                language: "es",
+                setDate: myDate
+            });
+
+        $('.datepicker').val(myDate);
+    </script>
+</body>
+</html >

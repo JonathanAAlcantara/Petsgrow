@@ -1,0 +1,671 @@
+﻿body {
+
+}
+
+
+@media screen and (min-width: 600px) {
+    .ocultar-._banner {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    ._carousel-container {
+        height: auto;
+        min-height: 25%;
+    }
+}
+
+    :root {
+        --primary-color: #2C2E2D;
+        --secondary-color: #F4AB43;
+        --third-color: #DBD9D5;
+        --fourth-color: #FFFFFF;
+        --z-back: -10;
+        --z-normal: 1;
+        --z-tooltip: 10;
+        --z-fixed: 100;
+        --z-modal: 1000;
+        --scroll-bar: 13px;
+    }
+
+._test {
+    width: 100%;
+    height: 50px;
+    background-color: cadetblue;
+}
+/*Presentación de la página*/
+
+._img-navbar{
+    max-width: 50%;
+}
+
+._pres-section {
+    position: relative;
+}
+
+._presentacion {
+    width: 100%;
+    height: 80vh;
+    background-image: url(/Content/Images/AndreaPiacquadioGrande.jpg);
+    filter: grayscale(100%);
+    background-color: var(--primary-color);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+    ._presentacion:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+
+._acomodo1 {
+    width: 30em;
+    height: 10em;
+    top: 3em;
+    left: 1em;
+    font-weight: 600;
+    opacity: 0;
+}
+
+._size-img-navbar {
+    width: 300px;
+}
+
+._acomodo2 {
+    width: 28em;
+    height: 10em;
+    top: 15em;
+    left: 1em;
+    font-weight: 600;
+    opacity: 0;
+}
+
+._text {
+    color: var(--fourth-color);
+    position: absolute;
+    overflow-wrap: normal;
+    font: 1.3em 'Baloo Chettan 2', cursive;
+}
+
+
+@media screen and (max-width: 450px){
+    ._acomodo1 {
+        width: 15em;
+        top: 5em;
+    }
+    
+    ._acomodo1 h1{
+        font-size: 1.5em;
+            text-align: center;
+    }
+
+    ._acomodo2 {
+        width: 16em;
+        top: 18em;
+    }
+    
+    ._acomodo2 h2{
+        font-size: 1.3em;
+    }
+
+    ._presentacion {
+        background-position-x: -450px;
+    }
+
+    ._size-img-navbar {
+        width: 170px;
+    }
+
+    ._serv-text2 {
+        width: 80% !important;
+        height: 6em !important;
+        top: 1em !important;
+        left: 0em !important;
+        text-align: center;
+        font: 1.3em 'Baloo Chettan 2', cursive !important;
+    }
+
+    ._serv-header {
+        transform: translateY(8em);
+    }
+
+    ._serv-text3 {
+        width: 80% !important;
+        top: 2em !important;
+        left: 0em !important;
+        font: 1.3em 'Baloo Chettan 2', cursive !important;
+        font-weight: 100 !important;
+        text-align: center;
+    }
+
+    ._serv-title-position {
+        width: 35% !important;
+        left: 0em !important;
+        font: 1.4em 'Baloo Chettan 2', cursive !important;
+    }
+
+}
+
+
+@media screen and (max-width: 450px) {
+    ._info-beneficios {
+        width: 100% !important;
+        right: 0px !important;
+        top: 100px !important;
+        font-weight: 600 !important;
+    }
+
+    ._info-beneficios p{
+        font-size: 1.5em;
+    }
+
+    ._banner-section-prices {
+        height: 80vh !important;
+    }
+
+    ._banner-section-prices table {
+        font-size: 0.7em;
+        top: 7.5em;
+    }
+
+    th {
+        padding: 0px;
+        padding: 2px !important;
+        font-size: 0.9em;
+    }
+
+    td {
+        padding: 4px 12px !important;
+        font-size: 0.9em !important;
+    }
+}
+/*Presentación de la página*/
+
+._header {
+    margin: 0;
+    text-align:initial;
+    font-size: 2.0rem;
+}
+
+.animate11 {
+    animation: mostrar1 2s forwards;
+}
+
+@keyframes mostrar1 {
+    to {
+        opacity: 1;
+    }
+}
+
+.animate21 {
+    animation: mostrar 2s 1s forwards;
+}
+
+@keyframes mostrar {
+    to {
+        opacity: 1;
+    }
+}
+
+._carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    position: relative;
+}
+
+    ._carousel-item {
+        position: absolute;
+        opacity: 0;
+        transition: opacity .5s;
+        width: 70vw;
+        margin: 2rem;
+    }
+
+        ._carousel-item:first-child {
+            opacity: 1;
+        }
+
+        ._carousel-item:target {
+            opacity: 1;
+        }
+
+    ._carousel-menu {
+        display: inline-flex;
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        z-index: var(--z-modal);
+    }
+
+    ._car-menu {
+        position: relative;
+        align-self: flex-end;
+    }
+
+._servicios {
+    width: 100%;
+    height: 60vh;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+}
+
+._serv-title-position {
+    width: 20%;
+    height: 1.7em;
+    position: relative;
+    display: flex;
+    top: 1.2em;
+    left: 12em;
+    color: var(--fourth-color);
+    overflow-wrap: normal;
+    font: 2.5em 'Baloo Chettan 2', cursive;
+    font-weight: 800;
+    overflow: hidden;
+    justify-content: center;
+}
+
+._serv-text2 {
+    width: 40%;
+    height: 6.5em;
+    position: relative;
+    top: 4em;
+    left: -5em;
+    color: var(--fourth-color);
+    overflow-wrap: normal;
+    font: 2em 'Baloo Chettan 2', cursive;
+    font-weight: 600;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+._serv-text3 {
+    width: 40%;
+    height: 6em;
+    position: relative;
+    top: 4em;
+    left: -2em;
+    color: var(--fourth-color);
+    overflow-wrap: normal;
+    font: 2em 'Baloo Chettan 2', cursive;
+    font-weight: 600;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+._serv-header {
+    margin: 0;
+    transform: translateY(2em);
+}
+
+.animate {
+    animation: appear .5s forwards;
+}
+
+@keyframes appear {
+    to {
+        transform: translateY(0em);
+    }
+}
+
+._banner-section {
+    width: 100%;
+    height: 80vh;
+    background-image: url(/Content/Images/HappyDog4.jpg);
+    /*    background-image: url(/Content/Images/ChepteP.jpg);
+    background-position-x: -80px;*/
+    background-size: cover;
+    position: relative;
+}
+
+/*    ._banner-section:after {
+        content: '';
+        position: absolute;
+        top: 58.7em;
+        bottom: 2em;
+        left: 0;
+        right: 0;
+        height: 34.5em;
+        background-color: rgba(244,171,67,0.7);
+    }*/
+
+._info-beneficios {
+    width: 650px;
+    height: 400px;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    overflow-wrap: normal;
+    display: grid;
+    justify-content: center;
+    color: var(--primary-color);
+    font-family: 'Baloo Chettan 2', cursive;
+    align-content: center;
+}
+
+._banner-section-prices {
+    background-color: var(--fourth-color);
+    width: 100%;
+    height: 95vh;
+    position: relative;
+    display: grid;
+    grid-template-rows: .2fr 1fr;
+    justify-content: center;
+    font-family: 'Baloo Chettan 2', cursive;
+}
+
+._info-beneficios p, h2 {
+    text-align: center;
+    margin-top: .8em;
+}
+
+._info-beneficios h2{
+    margin-bottom: 35px;
+    font-size: 2.6em;
+}
+
+._info-beneficios p{
+    margin-bottom: 35px;
+    font-size: 1.8em;
+}
+
+table {
+    table-layout: fixed;
+    width: 85%;
+    left: 7.5%;
+    top: 4.5em;
+    position: absolute;
+    border-collapse: collapse;
+    border: 1px solid var(--primary-color);
+}
+
+thead th:nth-child(1) {
+    width: 30%;
+}
+
+thead th:nth-child(2) {
+    width: 14%;
+}
+
+thead th:nth-child(3) {
+    width: 14%;
+}
+
+thead th:nth-child(4) {
+    width: 14%;
+}
+
+thead th:nth-child(5) {
+    width: 14%;
+}
+
+thead th:nth-child(6) {
+    width: 14%;
+}
+
+th, td {
+    padding:  8px 12px;
+    border: 1px solid var(--primary-color);
+}
+
+thead{
+    text-align: center;
+}
+
+tbody{
+    text-align: center;
+}
+
+._punto{
+    font-weight: 700;
+    font-size: 20px;
+}
+
+._banner-section-prices a {
+    background-color: var(--secondary-color) !important;
+    color: var(--fourth-color);
+    border-color: var(--secondary-color) !important;
+    height: 2em;
+    position: absolute;
+    display: grid;
+    justify-self: center;
+    bottom: 1.5em;
+}
+
+._banner-section-prices a:hover {
+    background-color: #FFD345 !important;
+    border-color: #FFD345 !important;
+}
+
+._font {
+    font-family: 'Baloo Chettan 2', cursive;
+    font-weight: 400;
+    color: var(--fourth-color);
+}
+
+._banner {
+    background-color: var(--primary-color);
+    height: 65vh;
+    display: flex;
+    margin: 0 3em 0 34em;
+    position: relative;
+    top: 3em;
+    display: flex;
+}
+
+    ._banner-item {
+        flex: 1;
+        display: flex;
+        transition: flex-grow 0.8s;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+        ._banner-item:hover {
+            flex-grow: 10;
+        }
+
+._banner-title {
+    margin: 0;
+    color: var(--secondary-color);
+    font-size: 20px;
+    font-family: 'Baloo Chettan 2', cursive;
+    font-weight: 400;
+    transform: rotate(-90deg);
+    display: inline-flex;
+    transition: opacity 0.2s;
+}
+
+._banner-title:hover{
+    opacity: 0;
+}
+
+
+    ._banner-hiperlink{
+        display: contents;
+    }
+
+    ._banner-icon {
+        position: absolute;
+        top: 1rem;
+        right: auto;
+        left: auto;
+    }
+
+    ._card-container {
+        height: auto;
+        margin: 2rem 4rem;
+    }
+
+    ._card-image {
+    }
+
+    ._card-style {
+        background-color: var(--fourth-color);
+        color: white;
+        border-top-color: white;
+        border-top-style: solid;
+    }
+
+/*SCREEN BETWEEN 450PX & 575PX*/
+@media screen and (min-width: 451px) and (max-width: 576px){
+
+    ._serv-title-position {
+        width: 36%;
+        height: 1.7em;
+        top: 1.2em;
+        left: 0em;
+        font: 2.2em 'Baloo Chettan 2', cursive;
+        text-align: center;
+        display: block;
+    }
+
+    ._serv-text2 {
+        width: 75%;
+        top: 1em;
+        left: 0em;
+        font: 1.3em 'Baloo Chettan 2', cursive;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    ._serv-text3 {
+        width: 75%;
+        top: -1em;
+        left: 0em;
+        font: 1.3em 'Baloo Chettan 2', cursive;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    ._info-beneficios {
+        right: 10px;
+        width: 100%;
+    }
+
+        ._info-beneficios p {
+            font-size: 1.7em;
+        }
+
+    ._text {
+        font: 1em 'Baloo Chettan 2', cursive;
+    }
+
+    ._acomodo1 {
+        text-align: center;
+        left: 0em;
+        width: 100%;
+    }
+
+    ._acomodo2 {
+        top: 22em;
+        left: 0em;
+    }
+
+    th {
+        padding: 0px;
+        padding: 2px !important;
+        font-size: 0.7em;
+    }
+
+    td {
+        padding: 4px 12px !important;
+        font-size: 0.9em !important;
+    }
+
+}
+
+/*SCREEN BETWEEN 576PX & 768PX*/
+@media screen and (min-width: 576px) and (max-width: 768px) {
+
+    ._serv-title-position {
+        width: 36%;
+        height: 1.7em;
+        top: 1.2em;
+        left: 0em;
+        font: 3em 'Baloo Chettan 2', cursive;
+        text-align: center;
+        display: block;
+    }
+
+    ._serv-text2 {
+        width: 75%;
+        top: 1em;
+        left: 0em;
+        font: 1.5em 'Baloo Chettan 2', cursive;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    ._serv-text3 {
+        width: 75%;
+        top: -1em;
+        left: 0em;
+        font: 1.5em 'Baloo Chettan 2', cursive;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    ._info-beneficios {
+        width: 100%;
+        top: 7em;
+        right: 0px;
+    }
+
+        ._info-beneficios p {
+            font-size: 2.2em;
+        }
+
+    ._text {
+        font: 1.4em 'Baloo Chettan 2', cursive;
+    }
+
+    ._acomodo1 {
+        text-align: center;
+        left: 0em;
+        width: 90%;
+        margin-left: 1em;
+    }
+
+    ._acomodo2 {
+        top: 16em;
+        left: 0em;
+        width: 90%;
+        margin-left: 1em;
+    }
+
+    th {
+        padding: 0px;
+        padding: 2px !important;
+        font-size: 0.8em;
+    }
+
+    td {
+        padding: 4px 12px !important;
+        font-size: 1em !important;
+    }
+}

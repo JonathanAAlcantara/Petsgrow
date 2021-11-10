@@ -1,0 +1,203 @@
+﻿
+@{
+    ViewBag.Title = "RegistroUsuario";
+    Layout = "~/Views/Shared/Layout_Inicio_Grid.cshtml";
+}
+
+    <html>
+    <head>
+        <title>Registrate</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@400;600;800&display=swap" rel="stylesheet">
+        <link href="~/Content/Registro.css" rel="stylesheet" />
+
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/angular.min.js"></script>
+
+
+    </head>
+    <body>
+        <div class="_contenedor">
+
+            <div class="_form-login _styleform" ng-app="MyApp" ng-controller="MyController">
+                @*<h3>{{Hola}}</h3>*@
+
+                <form class="_formulario" id="formulario">
+
+                    <div class="_form-element" id="group-usuario">
+                        <label for="usuario" class="_form-element _font400">Nombre de usuario</label>
+                        <div class="_group-input">
+                            <input id="usuario" name="usuario" type="text" required class="form-control _form-input _font400" placeholder="Ingresar nombre de usuario" ng-model="UsuarioAgregar.Nombre">
+                            <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                            <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                        </div>
+
+                        <p class="_form-info">El nombre sólo debe contener letras</p>
+
+                    </div>
+                    <div class="_form-element" id="group-correo">
+                        <label for="correo" class="_form-element _font400">Correo electrónico</label>
+                        <div class="_group-input">
+                            <input id="correo" name="correo" type="email" required class="form-control _form-input _font400" placeholder="Ingresar correo" ng-model="UsuarioAgregar.Login">
+                            <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                            <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                        </div>
+
+                        <p class="_form-info">Debe ingresar una dirección de correo válida</p>
+                    </div>
+                    <div class="_form-element" id="group-password">
+                        <label for="password" class="_form-element _font400">Contraseña</label>
+                        <div class="_group-input">
+                            <input id="password" name="password" type="password" required class="form-control _form-input _font400" placeholder="Contraseña" ng-model="UsuarioAgregar.Password">
+                            <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                            <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                        </div>
+
+                        <p class="_form-info">8 dígitos: una mayúscula, una minúscula y un número</p>
+                    </div>
+                    <div class="_form-element" id="group-confirmacion">
+                        <label form="confirmacion" class="_form-element _font400">Confirmacion de contraseña</label>
+                        <div class="_group-input">
+                            <input id="confirmacion" name="confirmacion" type="password" required class="form-control _form-input _font400" placeholder="Contraseña" ng-model="UsuarioAgregar.Confirmacion">
+                            <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                            <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                        </div>
+
+                        <p class="_form-info">Las contraseñas ingresadas deben coincidir</p>
+                    </div>
+                    <!--<div class="form-group input-group _font400 _form-element" id="group-rol">
+            <label form="rol" class="control-label width-control" for="claveCampania">Tipo de membresía:</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="_group-input">
+                <div class="input-group-append">
+                    <select class="form-control _form-control" id="rolUsuarioMod" name="rol"-->
+                    @*ng-disabled="!EsSistema"*@
+                    <!--ng-model="RolAgregar" ng-options="data as data.Rol for data in ListaCatRol track by data.Id" required>
+                        </select>
+                    </div>
+                    <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                    <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                </div>
+
+                <p class="_form-info">Debe seleccionar una opción de la lista</p>
+            </div>-->
+
+                    <div class="_form-check" id="_group-terminos">
+                        <input type="checkbox" name="checkterminos" value="terminos" id="terminos" class="_check-input" />
+                        <label class="_check-label">
+                            Acepto los términos y condiciones
+                        </label>
+                    </div>
+
+                    <div class="_form-warning" id="form-warning">
+                        <p><img src="~/Content/Images/warningnegro.png" /><b>Error:</b>Por favor llene el formulario correctamente</p>
+                    </div>
+
+
+                    <button type="button" class="_btn _btnLogin _font400" data-toggle="modal" data-target="#staticBackdrop">
+                        Aviso de privacidad
+                    </button>
+
+                    <button id="btnRegister" type="button" class="_btn _btnLogin _font400" ng-click="AgregarUsuario(UsuarioAgregar, RolAgregar)">Registrarme</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header _modal-header-color">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Aviso de privacidad</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body _modal-overflow">
+                                    <p>
+                                        Felipe Alberto Arcos Casarrubias, a través de la página www.petsgrowmx.com es responsable de recabar sus datos personales, del uso que se le dé a los mismos y de su protección.
+                                    </p>
+                                    <p>
+                                        Su información personal será utilizada para proveer los servicios y productos que ha solicitado, informarle sobre cambios en los mismos y evaluar la calidad del servicio que le brindamos. Para las finalidades antes mencionadas, requerimos obtener los siguientes datos personales: Nombre completo, correo electrónico, domicilio y teléfono considerados como sensibles según la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.
+                                    </p>
+                                    <p>
+                                        Usted tiene derecho de acceder, rectificar y cancelar sus datos personales, así como de oponerse al tratamiento de los mismos o revocar el consentimiento que para tal fin nos haya otorgado (derechos ARCO), a través de los procedimientos que hemos implementado, mismos que se encuentran de conformidad con la Ley Federal de Protección de Datos Personales en Posesión de Particulares y demás relativas y aplicables. Para conocer dichos procedimientos, los requisitos y plazos, se puede poner en contacto con nuestro departamento legal con el L. en D.  Diego A. López Guerrero Echevarría, al correo electrónico petsgrowmx@gmail.com o visitar nuestra página de Internet www.petsgrowmx.com
+                                    </p>
+                                    <p>
+                                        Asimismo, le informamos que sus datos personales pueden ser transferidos y tratados dentro y fuera del país, por personas distintas a esta empresa. En ese sentido, su información puede ser compartida con las empresas afiliadas o relacionadas con Pets Grow, y terceros que hayan celebrado acuerdos con la misma ubicados en "México" o en el exterior de conformidad con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, y será recolectada, almacenada y utilizada por www.petsgrowmx.com, manteniendo los términos del "Aviso de Privacidad". El Usuario acepta y reconoce que en el evento que www.petsgrowmx.com transfiera su información personal a otros países, ésta se regirá por la normatividad aplicable en el país de destino, para validar las órdenes de compra, proveer los servicios y productos, mejorar nuestra página de internet, analizar perfiles de los usuarios, y enviar información promocional o comercial de www.petsgrowmx.com. Si usted no manifiesta su oposición para que sus datos personales sean transferidos, se entenderá que ha otorgado su consentimiento para ello.
+                                    </p>
+                                    <p>
+                                        <input type="checkbox" />No consiento que mis datos personales sean transferidos en los términos que señala el presente aviso de privacidad.
+                                    </p>
+                                    <p>
+                                        Si usted desea dejar de recibir mensajes promocionales de nuestra parte puede solicitarlo a través del correo electrónico petsgrowmx@gmail.com. Cualquier modificación a este aviso de privacidad podrá consultarla en nuestra página de internet. Fecha última actualización [10/11/2020]
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Entendido</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+
+            </div>
+
+            <!--TOAST ERROR EN EL REGISTRO-->
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toastError toast _toast" data-autohide="false">
+                <div class="toast-header">
+                    <img src="~/Content/Images/incorrecto.png" class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Error al crear tu cuenta</strong>
+                    <small>Notificación</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    Ocurrió un problema durante el registro de tu cuenta, intenta de nuevo más tarde o contacta al administrador de sistemas.
+                </div>
+            </div>
+
+            <!--TOAST ÉXITO CON EL REGISTRO-->
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toastExito toast _toast" data-autohide="false">
+                <div class="toast-header">
+                    <img src="~/Content/Images/comprobar.png" class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Tu cuenta se creó con éxito</strong>
+                    <small>Notificación</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    Se ha realizado el registro de tu cuenta y te hemos enviado un correo para activarla. Revisa tu bandeja de entrada o correo no deseado.
+                </div>
+            </div>
+
+            <!--TOAST EL USUARIO YA EXISTE-->
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toastCuentaDuplicada toast _toast" data-autohide="false">
+                <div class="toast-header">
+                    <img src="~/Content/Images/comprobar.png" class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Ya existe una cuenta con este correo</strong>
+                    <small>Notificación</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    Este correo ya tiene una cuenta asignada, puedes recuperar tu contraseña o registrar un correo distinto
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        
+
+
+        <script src="~/Scripts/Inicio/Usuario.js"></script>
+
+    </body>
+    </html>
+

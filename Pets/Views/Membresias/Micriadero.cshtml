@@ -1,0 +1,2617 @@
+﻿
+@{
+    ViewBag.Title = "Micriadero";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <title>Mi criadero</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="~/Content/UsuariosB.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/datepicker.css" rel="stylesheet" />
+    <link href="~/Content/FontAwesome/all.css" rel="stylesheet" />
+
+    <link rel="icon" type="image/png" href="~/Content/Images/Iso60.png" />
+
+    
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/locales/bootstrap-datepicker.es.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+
+    @*Datetime picker*@
+
+
+    @*Google Charts*@
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+</head>
+<body ng-app="MyApp" ng-controller="MyController">
+
+    @*$('#IdObjeto').val('Hola');
+
+        var uno = $('#IdObjeto').val();*@
+
+    @*<div class="input-group fecha-custom">
+            <input type="text" class="form-control datepicker" id="fechaDocumento" name="fecha"
+                    placeholder="DD/MM/YYYY"
+                    required readonly />
+            <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">
+                    <i class="fa fa-calendar-alt fa-lg"></i>
+                </span>
+            </div>
+        </div>*@
+
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand _size-img-navbar" href="@Url.Action("Inicio", "Inicio")">
+                <img src="~/Content/Images/Imago60.png" class="img-fluid" width="291" height="45" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <img class="_menu-image-size" src="~/Content/Images/menuburger.png" />
+            </button>
+            <div class="collapse navbar-collapse _navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    @*<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle _font2 _link-hover" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Suscripcion
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item _font _link-hover" href="@Url.Action("Mimascota", "Membresias")">Mi mascota</a>
+                                <a class="dropdown-item _font _link-hover" href="@Url.Action("Micriadero", "Membresias")">Mi criadero</a>
+                                <a class="dropdown-item _font _link-hover" href="@Url.Action("Micriadero", "Membresias")">Mi criadero Pro</a>
+                            </div>
+                        </li>*@
+                    <li class="nav-item">
+                        <a class="nav-link _font2 _link-hover" href="@Url.Action("Criaderos", "Membresias")">Zona Pet Friendly</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link _font2 _link-hover" href="@Url.Action("Alianzas", "Membresias")">Alianzas</a>
+                    </li>
+                    @*<li class="nav-item">
+                            <a class="nav-link _font2 _link-hover" href="@Url.Action("Inicio", "Inicio")">Instadog</a>
+                        </li>*@
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <aside class="_menu-usuario">
+    </aside>
+
+
+    <div class="_pet" id="petImage">
+        @*<img class="_pet-image _border-shadow" src="~/Content/Images/micriadero.jpg" />*@
+    </div>
+
+    <div class="_bienvenida _font2 _posicion-bienvenida">Hola {{bienvenido}}</div>
+    <img id="menuTrigger" class="_banner-icon-menu img-fluid _configuacion-icono" src="~/Content/Images/menu.png" />
+
+    <!--qr-->
+
+    <div style="display:none">
+        <div id="imprimir">
+            <h1>
+                ID Petsgrow
+            </h1>
+            <br />
+            <div>Nombre de contacto: {{nombre}}</div>
+            <br />
+            <div>Correo: {{correo}}</div>
+            <br />
+            <div>Teléfono: {{telefono}}</div>
+            <br />
+            <br />
+            <div id="codigoQR" class="_codigoQR"></div>
+        </div>
+    </div>
+
+    <!--qr-->
+    <!--MENU DESPLEGABLE-->
+
+    <div id="menu" class="_menu-list">
+        <div> <img id="closemenu" class="_close-img" src="~/Content/Images/close.png" /></div>
+
+        <!--MENU PARA USUARIOS BPRO, CRIADEROS Y ALIANZAS-->
+        <div class="_info-usuario" id="menuUsuario">
+            <p style="margin-bottom: 0">
+                {{bienvenido}} actualmente cuentas con una membresía para publicar tu anuncio, para llenar los datos de tu anuncio
+                da clic en publicar.
+                <br />
+                <a class="nav-link _font3" href="@Url.Action("FormularioAnuncio", "Anuncios")">Publicar</a>
+                @*<button class="_btn-naranja _font"> <a class="nav-link _nav-link _font2" href="@Url.Action("PagodeMembresia", "Pagos")">Pagar Membresía</a></button>*@
+            </p>
+
+        </div>
+        <!--MENU PARA USUARIOS BPRO, CRIADEROS Y ALIANZAS-->
+        <!--MENU PARA USUARIOS B-->
+        <div class="_info-usuario" id="menuUsuarioB">
+            <p style="margin-bottom: 0">
+                {{bienvenido}} actualmente cuentas con una membresía Mi criadero, para acceder a un registro para el control financiero sube a Mi criadero B pro.
+                <br />
+                <br />
+                <button class="_btn-naranja _font"> <a class="nav-link _nav-link _font2" href="@Url.Action("PagodeMembresia", "Pagos")">Pagar Membresía</a></button>
+            </p>
+
+        </div>
+        <!--MENU PARA USUARIOS B-->
+        <!--qr-->
+        <div id="qrcode">
+            <p class="_font4" style="text-align: center">Genera una credencial con tu codigo QR</p>
+            <input class="_form-input-qr _label-form-contrasena _font4" id="item_txt" type="text" placeholder="Ingresa una URL web o facebook">
+            <button class="_btn-naranja _font" id="generarCodigo">Generar</button> <a href="#" id="descargarCodigo">Descargar</a>
+            <a id="imprimirPDF" href="javascript:pruebaDivAPdf()" class="button _font3 _pasarPDF">Pasar a PDF</a>
+        </div>
+        <!--qr-->
+
+        <form class="_form-contrasena _font2">
+            @*<h5 class="_font2" style="text-align: center">Cambiar contraseña</h5>
+                <label class="_label">Contraseña actual</label>
+                <input class="_form-input-contrasena _label-form-contrasena _font4" type="text" />
+                <label class="_label">Contraseña nueva</label>
+                <input class="_form-input-contrasena _label-form-contrasena _font4" type="text" />
+                <label class="_label">Confirma contraseña nueva</label>
+                <input class="_form-input-contrasena _label-form-contrasena _font4" type="text" />
+                <br />
+                <button class="_btn-naranja _font"> <a class="nav-link _nav-link _font2" href="@Url.Action("Mimascota", "Membresias")">Actualizar</a></button>
+                <br />*@
+
+            <button class="_btn-naranja _font2" ng-click="CancelarMembresia()">Cancelar Membresia</button>
+            <br />
+            <label for="imagen" class="_field-name">Imagen</label>
+            <div>
+                <input type="file" id="fileInput" accept="image/x-png,image/gif,image/jpeg" />
+            </div>
+            <br />
+            <button class="_btn-naranja _font2" ng-click="ActualizarFoto(Foto)">Actualizar foto</button>
+            <br />
+            <button id="btnCerrarSesion" type="button" class="_btn-naranja _font2">
+                Cerrar sesion
+            </button>
+        </form>
+    </div>
+
+    <div class="_pet-icons" id="petIcons">
+        <img id="animatehumano" class="_banner-icon img-fluid" src="~/Content/Images/propietario.png" />
+        <img id="animateperro" class="_banner-icon img-fluid" src="~/Content/Images/petId.png" />
+        <img id="animatesalud" class="_banner-icon img-fluid" src="~/Content/Images/salud.png" />
+        <img id="animateentrenamiento" class="_banner-icon img-fluid" src="~/Content/Images/entrenamiento.png" />
+        <img id="animatefinanzas" class="_banner-icon img-fluid" src="~/Content/Images/administracion.png" />
+    </div>
+
+
+
+    <div id="_form-humano">
+
+    </div>
+    <select name="estado" class="_input _form-input _ocultar" id="ih_estado" ng-change="BuscarMunicipios(Formulario.Estado)" ng-model="Formulario.Estado">
+        <option value="0">Seleccione...</option>
+        <option value="1">Aguascalientes</option>
+        <option value="2">Baja California</option>
+        <option value="3">Baja California Sur</option>
+        <option value="4">Campeche</option>
+        <option value="5">Coahuila de Zaragoza</option>
+        <option value="6">Colima</option>
+        <option value="7">Chiapas</option>
+        <option value="8">Chihuahua</option>
+        <option value="9">Ciudad de México</option>
+        <option value="10">Durango</option>
+        <option value="11">Guanajuato</option>
+        <option value="12">Guerrero</option>
+        <option value="13">Hidalgo</option>
+        <option value="14">Jalisco</option>
+        <option value="15">México</option>
+        <option value="16">Michoacán de ocampo</option>
+        <option value="17">Morelos</option>
+        <option value="18">Nayarit</option>
+        <option value="19">Nuevo León</option>
+        <option value="20">Oaxaca</option>
+        <option value="21">Puebla</option>
+        <option value="22">Querétaro</option>
+        <option value="23">Quintana Roo</option>
+        <option value="24">San Luis Potosí</option>
+        <option value="25">Sinaloa</option>
+        <option value="26">Sonora</option>
+        <option value="27">Tabasco</option>
+        <option value="28">Tamaulipas</option>
+        <option value="29">Tlaxcala</option>
+        <option value="30">Veracruz de Ignacio de la Llave</option>
+        <option value="31">Yucatán</option>
+        <option value="32">Zacatecas</option>
+    </select>
+    <select name="municipio" class="_input _form-input _ocultar" id="_typeMunicipios">
+        <option value="-"></option>
+    </select>
+
+    <div id="_form-perro">
+
+    </div>
+
+    <div id="_form-salud">
+
+    </div>
+    <div id="Actualizar_vacunas-contenedor">
+        <button id="Actualizar_vacunas" type="button" class="_btn-naranja _ocultar" data-toggle="modal" data-target="#modalRegistroVacunas">Vacunas</button>
+    </div>
+
+
+    <div id="_form-entrenamiento">
+
+    </div>
+    <div id="Actualizar_btn-contenedor">
+        <button id="Actualizar_competencias" type="button" class="_btn-naranja _ocultar" data-toggle="modal" data-target="#modalRegistroCompetencias">Competencias</button>
+        <button id="Actualizar_camadas" type="button" class="_btn-naranja _ocultar" data-toggle="modal" data-target="#modalRegistroCamadas">Camadas</button>
+    </div>
+
+
+    <div id="_form-finanzas">
+
+    </div>
+    <div id="Actualizar_ingresos-contenedor">
+        <button class="_btn-naranja _ocultar" id="actualizar_ingresos" type="button" style="top:10px">Actualizar</button>
+        <button class="_btn-naranja _ocultar" id="filtrar_fechas" type="button">Filtrar</button>
+    </div>
+
+
+    <div id="listadeperros" class="_plus-dog">
+        <h2>Mis mascotas</h2>
+
+    </div>
+
+    <select id="Mascotas" class="_selec-mascota">
+    </select>
+
+    <div id="_new-dog" class="_img-container" data-toggle="modal" data-target="#modalRegistroPerro">
+        <img class="_img-perro" src="~/Content/Images/perrogenerico.png" />
+        <img class="_img-mas" src="~/Content/Images/mas.png" />
+    </div>
+
+    <div id="_erase-dog" class="_img-container2" data-toggle="modal" data-target="#modalEliminarPerro">
+        <img class="_img-perro" src="~/Content/Images/perrogenerico.png" />
+        <img class="_img-mas" src="~/Content/Images/menos.png" />
+    </div>
+
+    <div class="_pagoperro-panel">
+        <button id="listaPago" type="button" class="_btn-naranja" data-toggle="modal" data-target="#modalPagoPerro">Pagos</button>
+    </div>
+
+    @*<div id="chart_div"></div>*@
+
+
+    <!-- Modal para fecha de ingresos-->
+    <div class="modal fade" id="modalFechaIngresos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group fecha-custom">
+                        <input type="text" class="form-control datepicker" id="selFechaIngreso" name="fecha"
+                               placeholder="YYYY//MM/DD"
+                               required readonly />
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fa fa-calendar-alt fa-lg"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="dateing()" data-dismiss="modal">Guardar</button>
+
+                    <script>
+                        //DATETIME PICKER
+                        function dateing() {
+                            var fechaObtenida = document.getElementById("selFechaIngreso").value;
+                            var Ponerfecha = document.getElementById("fechaingreso");
+
+                            Ponerfecha.value = fechaObtenida;
+                        };
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para fecha de ingresos-->
+    <div class="modal fade" id="modalFechaEgresos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group fecha-custom">
+                        <input type="text" class="form-control datepicker" id="selFechaEgreso" name="fecha"
+                               placeholder="YYYY//MM/DD"
+                               required readonly />
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fa fa-calendar-alt fa-lg"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="dateegr()" data-dismiss="modal">Guardar</button>
+
+                    <script>
+                        //DATETIME PICKER
+                        function dateegr() {
+                            var fechaObtenida = document.getElementById("selFechaEgreso").value;
+                            var Ponerfecha = document.getElementById("fechaegreso");
+
+                            Ponerfecha.value = fechaObtenida;
+                        };
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para fecha de nacimiento-->
+    <div class="modal fade" id="modalFechaNacimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group fecha-custom">
+                        <input type="text" class="form-control datepicker" id="selFechaNacimiento" name="fecha"
+                               placeholder="YYYY//MM/DD"
+                               required readonly />
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fa fa-calendar-alt fa-lg"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="datenac()" data-dismiss="modal">Guardar</button>
+
+                    <script>
+                        //DATETIME PICKER
+                        function datenac() {
+                            var fechaObtenida = document.getElementById("selFechaNacimiento").value;
+                            var Ponerfecha = document.getElementById("ip_nacimiento");
+
+                            Ponerfecha.value = fechaObtenida;
+                        };
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para fecha inicial del rango-->
+    <div class="modal fade" id="modalFechaInicio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group fecha-custom">
+                        <input type="text" class="form-control datepicker" id="selFechaInicial" name="fecha"
+                               placeholder="YYYY//MM/DD"
+                               required readonly />
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fa fa-calendar-alt fa-lg"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="dateini()" data-dismiss="modal">Guardar</button>
+
+                    <script>
+                        //DATETIME PICKER
+                        function dateini() {
+                            var fechaObtenidaini = document.getElementById("selFechaInicial").value;
+                            var Ponerfechaini = document.getElementById("fechaInicial");
+
+                            Ponerfechaini.value = fechaObtenidaini;
+                        };
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para fecha de final del rango-->
+    <div class="modal fade" id="modalFechaFinal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group fecha-custom">
+                        <input type="text" class="form-control datepicker" id="selFechaFinal" name="fecha"
+                               placeholder="YYYY//MM/DD"
+                               required readonly />
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="fa fa-calendar-alt fa-lg"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="dateingfin()" data-dismiss="modal">Guardar</button>
+
+                    <script>
+                        //DATETIME PICKER
+                        function dateingfin() {
+                            var fechaObtenidafin = document.getElementById("selFechaFinal").value;
+                            var Ponerfechafin = document.getElementById("fechaFinal");
+
+                            Ponerfechafin.value = fechaObtenidafin;
+                        };
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--TOAST ERROR EN TABLA DE DATOS MEDICOS-->
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toastError toast _toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="~/Content/Images/incorrecto.png" class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Error al desplegar los datos</strong>
+            <small>Notificación</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Ocurrió un problema durante el proceso. Para desplegar este menú debes agregar primero una mascota.
+        </div>
+    </div>
+
+    <!--TOAST ERROR EN TABLA DE DATOS ENTRENAMIENTO-->
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toastErrorEntrenamiento toast _toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="~/Content/Images/incorrecto.png" class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Error al desplegar los datos</strong>
+            <small>Notificación</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Ocurrió un problema durante el proceso. Para desplegar este menú debes llenar el campo "Esterilización" en la ficha de salud.
+        </div>
+    </div>
+
+    <!--TOAST EXITO EN REGISTRO DEL PRIMER PERRO-->
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toastExitoRegistroPrimerPerro toast _toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="~/Content/Images/comprobar.png" class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Éxito en el registro de tu mascota</strong>
+            <small>Notificación</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Hemos registrado exitosamente los datos de tu mascota, vuelve a ingresar para visualizarlos.
+            Recuerda que sólo tienes una máscota gratis.
+        </div>
+    </div>
+
+    <!--TOAST ERROR EN REGISTRO DEL PRIMER PERRO-->
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toastFracasoRegistroPrimerPerro toast _toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="~/Content/Images/incorrecto.png" class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Error en el registro de tu mascota</strong>
+            <small>Notificación</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Ocurrió un error, vuelve a intentarlo más tarde o contacta al administrador de sistemas.
+        </div>
+    </div>
+
+    <!--TOAST EXITO EN REGISTRO DEL PRIMER PERRO-->
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toastExitoCierre toast _toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="~/Content/Images/comprobar.png" class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Éxito en el cierre de sesión</strong>
+            <small>Notificación</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Se ha cerrado exitosamente tu sesión.
+        </div>
+    </div>
+
+    <!--TOAST ERROR EN REGISTRO DEL PRIMER PERRO-->
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toastFracasoCierre toast _toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="~/Content/Images/incorrecto.png" class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Error en el cierre de sesión</strong>
+            <small>Notificación</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Ocurrió un error, el tiempo de sesión ha finalizado.
+        </div>
+    </div>
+
+    <!--TOAST EXITO EN ACTUALIZACIÓN DE LOS DATOS-->
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toastExitoActualizacion toast _toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="~/Content/Images/comprobar.png" class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Éxito en la actualización de datos.</strong>
+            <small>Notificación</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            La próxima vez que ingreses podrás ver los cambios.
+        </div>
+    </div>
+
+    <!--TOAST ERROR EN ACTUALIZACIÓN DE LOS DATOS-->
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toastErrorActualizacion toast _toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="~/Content/Images/comprobar.png" class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Ocurrió un error en la actualización de datos.</strong>
+            <small>Notificación</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Intente de nuevo más tarde o contacte al administrados de sistemas.
+        </div>
+    </div>
+
+    <!-- Modal para registro de perros-->
+    <div class="modal fade" id="modalRegistroPerro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Registra a tu mascota</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="_dataform _font">
+                        <h2 id="tituloPerro">Datos de mi perro</h2>
+                        <form id="perro" class="_form _font">
+
+                            <label class="_label _label-modal">Nombre del perro</label>
+                            <input class="_form-input _label-form _font _form-input-modal" id="ip_nombre" type="text" ng-model="Perro.nombreperro">
+                            <label class="_label _label-modal">Número de chip</label>
+                            <input class="_form-input _label-form _font _form-input-modal" id="ip_chip" type="text" ng-model="Perro.chip">
+                            <label class="_label _label-modal">Raza</label>
+                            @*<input class="_form-input _label-form _font _form-input-modal" id="ip_raza" type="text" ng-model="Perro.raza">*@
+
+                            <select class="_form-input _label-form _font _form-input-modal" id="ip_raza" type="text" ng-model="Perro.raza">
+                                <option value="0">…Seleccione</option>
+                                <option value="Affenpinscher">Affenpinscher</option>
+                                <option value="Airedale terrier">Airedale terrier</option>
+                                <option value="Akita americano">Akita americano</option>
+                                <option value="Akita">Akita</option>
+                                <option value="American cocker spaniel">American cocker spaniel</option>
+                                <option value="American foxhound">American foxhound</option>
+                                <option value="American staffordshire terrier">American staffordshire terrier</option>
+                                <option value="Antiguo perro de muestra danés">Antiguo perro de muestra danés</option>
+                                <option value="Antiguo perro de pastor inglés">Antiguo perro de pastor inglés</option>
+                                <option value="Australian kelpie">Australian kelpie</option>
+                                <option value="Australian terrier">Australian terrier</option>
+                                <option value="Azawakh">Azawakh</option>
+                                <option value="Basenji">Basenji</option>
+                                <option value="Basset artesiano de Normandía">Basset artesiano de Normandía</option>
+                                <option value="Basset azul de Gascuña">Basset azul de Gascuña</option>
+                                <option value="Basset hound">Basset hound</option>
+                                <option value="Basset leonado de Bretaña">Basset leonado de Bretaña</option>
+                                <option value="Beagle">Beagle</option>
+                                <option value="Beagle-Harrier">Beagle-Harrier</option>
+                                <option value="Bedlington terrier">Bedlington terrier</option>
+                                <option value="Behund noruego">Behund noruego</option>
+                                <option value="Bichón boloñés">Bichón boloñés</option>
+                                <option value="Bichón de pelo rizado">Bichón de pelo rizado</option>
+                                <option value="Bichón habanero">Bichón habanero</option>
+                                <option value="Bichón maltés">Bichón maltés</option>
+                                <option value="Billy">Billy</option>
+                                <option value="Border collie">Border collie</option>
+                                <option value="Border terrier">Border terrier</option>
+                                <option value="Boston terrier">Boston terrier</option>
+                                <option value="Bóxer">Bóxer</option>
+                                <option value="Boyero australiano">Boyero australiano</option>
+                                <option value="Boyero de Flandes">Boyero de Flandes</option>
+                                <option value="Boyero de las Ardenas">Boyero de las Ardenas</option>
+                                <option value="Boyero de Montana Bernes">Boyero de Montana Bernes</option>
+                                <option value="Braco alemán de pelo corto">Braco alemán de pelo corto</option>
+                                <option value="Braco de Airege">Braco de Airege</option>
+                                <option value="Braco de Auvernia">Braco de Auvernia</option>
+                                <option value="Braco del Borbonesado">Braco del Borbonesado</option>
+                                <option value="Braco eslovaco de pelo duro">Braco eslovaco de pelo duro</option>
+                                <option value="Braco francés - Tipo Gascuña">Braco francés - Tipo Gascuña</option>
+                                <option value="Braco francés - Tipo Pirineos">Braco francés - Tipo Pirineos</option>
+                                <option value="Braco húngaro de pelo corto">Braco húngaro de pelo corto</option>
+                                <option value="Braco húngaro de pelo duro">Braco húngaro de pelo duro</option>
+                                <option value="Braco italiano">Braco italiano</option>
+                                <option value="Braco Saint-Germain">Braco Saint-Germain</option>
+                                <option value="Briquet grifon vendeano">Briquet grifon vendeano</option>
+                                <option value="Broholmer">Broholmer</option>
+                                <option value="Bull terrier miniatura">Bull terrier miniatura</option>
+                                <option value="Bull terrier">Bull terrier</option>
+                                <option value="Bulldog">Bulldog</option>
+                                <option value="Bulldog francés">Bulldog francés</option>
+                                <option value="Bullmastiff">Bullmastiff</option>
+                                <option value="Cairn terrier">Cairn terrier</option>
+                                <option value="Canaan dog">Canaan dog</option>
+                                <option value="Caniche">Caniche</option>
+                                <option value="Cavalier charles spaniel">Cavalier charles spaniel</option>
+                                <option value="Cazador de alces noruego gris">Cazador de alces noruego gris</option>
+                                <option value="Cazador de alces noruego negro">Cazador de alces noruego negro</option>
+                                <option value="Chesapeake bay retriever">Chesapeake bay retriever</option>
+                                <option value="Chien de Saint Hubert">Chien de Saint Hubert</option>
+                                <option value="Chihuahua">Chihuahua</option>
+                                <option value="Chow chow">Chow chow</option>
+                                <option value="Cirneco de Etna">Cirneco de Etna</option>
+                                <option value="Clumber spaniel">Clumber spaniel</option>
+                                <option value="Cobrador de pelo liso">Cobrador de pelo liso</option>
+                                <option value="Cobrador de pelo rizado">Cobrador de pelo rizado</option>
+                                <option value="Cobrador dorado">Cobrador dorado</option>
+                                <option value="Cocker spaniel inglés">Cocker spaniel inglés</option>
+                                <option value="Collie barbudo">Collie barbudo</option>
+                                <option value="Collie de pelo corto">Collie de pelo corto</option>
+                                <option value="Collie de pelo largo">Collie de pelo largo</option>
+                                <option value="Coton de Tulear">Coton de Tulear</option>
+                                <option value="Dachsbracke de los Alpes">Dachsbracke de los Alpes</option>
+                                <option value="Dachshund estándar">Dachshund estándar</option>
+                                <option value="Dachshund miniatura">Dachshund miniatura</option>
+                                <option value="Dálmata">Dálmata</option>
+                                <option value="Dandie dimmont terrier">Dandie dimmont terrier</option>
+                                <option value="Deutsch langhaar">Deutsch langhaar</option>
+                                <option value="Dobermann">Dobermann</option>
+                                <option value="Dogo argentino">Dogo argentino</option>
+                                <option value="Dogo canario">Dogo canario</option>
+                                <option value="Dogo de Burdeos">Dogo de Burdeos</option>
+                                <option value="Dogo del Tibet">Dogo del Tibet</option>
+                                <option value="Espinone">Espinone</option>
+                                <option value="Eurásico">Eurásico</option>
+                                <option value="Field spaniel">Field spaniel</option>
+                                <option value="Fila brasileño">Fila brasileño</option>
+                                <option value="Fila de San Miguel">Fila de San Miguel</option>
+                                <option value="Fox terrier de pelo alambre">Fox terrier de pelo alambre</option>
+                                <option value="Fox terrier de pelo liso">Fox terrier de pelo liso</option>
+                                <option value="Foxhound inglés">Foxhound inglés</option>
+                                <option value="Galgo español">Galgo español</option>
+                                <option value="Gascon saintongeois">Gascon saintongeois</option>
+                                <option value="Gran basset grifón vendeano">Gran basset grifón vendeano</option>
+                                <option value="Gran boyero suizo">Gran boyero suizo</option>
+                                <option value="Gran danés">Gran danés</option>
+                                <option value="Gran grifon vendeano">Gran grifon vendeano</option>
+                                <option value="Gran münsterländer">Gran münsterländer</option>
+                                <option value="Gran sabueso anglo-francés blanco y naranja">Gran sabueso anglo-francés blanco y naranja</option>
+                                <option value="Gran sabueso anglo-francés blanco y negro">Gran sabueso anglo-francés blanco y negro</option>
+                                <option value="Gran sabueso anglo-francés tricolor">Gran sabueso anglo-francés tricolor</option>
+                                <option value="Gran sabueso azul de Gascuña">Gran sabueso azul de Gascuña</option>
+                                <option value="Greyhound">Greyhound</option>
+                                <option value="Grifón azul de Gascuña">Grifón azul de Gascuña</option>
+                                <option value="Grifón belga">Grifón belga</option>
+                                <option value="Grifon bruxellois">Grifon bruxellois</option>
+                                <option value="Grifón de muestra bohemio de pelo duro">Grifón de muestra bohemio de pelo duro</option>
+                                <option value="Grifón de muestra de pelo duro">Grifón de muestra de pelo duro</option>
+                                <option value="Grifón del Nivernais">Grifón del Nivernais</option>
+                                <option value="Grifón leonado de Bretaña">Grifón leonado de Bretaña</option>
+                                <option value="Harrier">Harrier</option>
+                                <option value="Hokkaido">Hokkaido</option>
+                                <option value="Hovawart">Hovawart</option>
+                                <option value="Husky siberiano">Husky siberiano</option>
+                                <option value="Jack russell terrier">Jack russell terrier</option>
+                                <option value="Kai">Kai</option>
+                                <option value="Kerly blue terrier">Kerly blue terrier</option>
+                                <option value="King charles spaniel">King charles spaniel</option>
+                                <option value="Kishu">Kishu</option>
+                                <option value="Komondor">Komondor</option>
+                                <option value="Korea jindo dog">Korea jindo dog</option>
+                                <option value="Kromfohrländer">Kromfohrländer</option>
+                                <option value="Kuvasz">Kuvasz</option>
+                                <option value="Labrador retriever">Labrador retriever</option>
+                                <option value="Laika de Siberia Occidental">Laika de Siberia Occidental</option>
+                                <option value="Laika de Siberia Oriental">Laika de Siberia Oriental</option>
+                                <option value="Laika ruso-europeo">Laika ruso-europeo</option>
+                                <option value="Lakeland terrier">Lakeland terrier</option>
+                                <option value="Landseer tipo europeo continental">Landseer tipo europeo continental</option>
+                                <option value="Lebrel afgano">Lebrel afgano</option>
+                                <option value="Lebrel escocés">Lebrel escocés</option>
+                                <option value="Lebrel húngaro">Lebrel húngaro</option>
+                                <option value="Lebrel irlandés">Lebrel irlandés</option>
+                                <option value="Lebrel polcao">Lebrel polcao</option>
+                                <option value="Lebrel ruso para la caza">Lebrel ruso para la caza</option>
+                                <option value="Leonberger">Leonberger</option>
+                                <option value="Lhasa apso">Lhasa apso</option>
+                                <option value="Lundehund noruego">Lundehund noruego</option>
+                                <option value="Malamute de Alaska">Malamute de Alaska</option>
+                                <option value="Manchester terrier">Manchester terrier</option>
+                                <option value="Mastiff">Mastiff</option>
+                                <option value="Mastín del Pirineo">Mastín del Pirineo</option>
+                                <option value="Mastín español">Mastín español</option>
+                                <option value="Mastín napolitano">Mastín napolitano</option>
+                                <option value="Mudi">Mudi</option>
+                                <option value="Nederlandse kooikerhondje">Nederlandse kooikerhondje</option>
+                                <option value="Nerfolk terrier">Nerfolk terrier</option>
+                                <option value="Norwich terrier">Norwich terrier</option>
+                                <option value="Parson russell terrier">Parson russell terrier</option>
+                                <option value="Pastor alemán">Pastor alemán</option>
+                                <option value="Pastor bergamasco">Pastor bergamasco</option>
+                                <option value="Pastor blanco suizo">Pastor blanco suizo</option>
+                                <option value="Pastor de Beauce">Pastor de Beauce</option>
+                                <option value="Pastor de Brie">Pastor de Brie</option>
+                                <option value="Pastor de Karst">Pastor de Karst</option>
+                                <option value="Pastor de los Pirineos de cara rasa">Pastor de los Pirineos de cara rasa</option>
+                                <option value="Pastor de Picardía">Pastor de Picardía</option>
+                                <option value="Pastor finlandés de Laponia">Pastor finlandés de Laponia</option>
+                                <option value="Pastor holandés">Pastor holandés</option>
+                                <option value="Pekinés">Pekinés</option>
+                                <option value="Pequeño basset grifón vendeano">Pequeño basset grifón vendeano</option>
+                                <option value="Pequeño lebrel italiano">Pequeño lebrel italiano</option>
+                                <option value="Pequeño münsterländer">Pequeño münsterländer</option>
+                                <option value="Pequeño perro león">Pequeño perro león</option>
+                                <option value="Pequeño sabueso azul de Gascuña">Pequeño sabueso azul de Gascuña</option>
+                                <option value="Perdiguero alemán">Perdiguero alemán</option>
+                                <option value="Perdiguero de Burgos">Perdiguero de Burgos</option>
+                                <option value="Perdiguero frisón">Perdiguero frisón</option>
+                                <option value="Perdiguero portugués">Perdiguero portugués</option>
+                                <option value="Perro boyero de Appenzell">Perro boyero de Appenzell</option>
+                                <option value="Perro boyero de Entlebuch">Perro boyero de Entlebuch</option>
+                                <option value="Perro cazador de alces sueco">Perro cazador de alces sueco</option>
+                                <option value="Perro cobrador de Nueva Escocia">Perro cobrador de Nueva Escocia</option>
+                                <option value="Perro corso italiano">Perro corso italiano</option>
+                                <option value="Perro crestado chino">Perro crestado chino</option>
+                                <option value="Perro crestado rodesiano">Perro crestado rodesiano</option>
+                                <option value="Perro de agua americano">Perro de agua americano</option>
+                                <option value="Perro de agua de Romagna">Perro de agua de Romagna</option>
+                                <option value="Perro de agua español">Perro de agua español</option>
+                                <option value="Perro de agua francés">Perro de agua francés</option>
+                                <option value="Perro de agua frisón">Perro de agua frisón</option>
+                                <option value="Perro de agua irlandés">Perro de agua irlandés</option>
+                                <option value="Perro de agua portugués">Perro de agua portugués</option>
+                                <option value="Perro de Castro Laboreiro">Perro de Castro Laboreiro</option>
+                                <option value="Perro de Groenlandia">Perro de Groenlandia</option>
+                                <option value="Perro de la Sierra de la Estrela">Perro de la Sierra de la Estrela</option>
+                                <option value="Perro de montaña de los Pirineos">Perro de montaña de los Pirineos</option>
+                                <option value="Perro de montaña del Atlas">Perro de montaña del Atlas</option>
+                                <option value="Perro de muestra alemán de pelo cerdoso">Perro de muestra alemán de pelo cerdoso</option>
+                                <option value="Perro de muestra alemán de pelo duro">Perro de muestra alemán de pelo duro</option>
+                                <option value="Perro de Nutria">Perro de Nutria</option>
+                                <option value="Perro de osos de Carelia">Perro de osos de Carelia</option>
+                                <option value="Perro de pastor belga">Perro de pastor belga</option>
+                                <option value="Perro de pastor catalán">Perro de pastor catalán</option>
+                                <option value="Perro de pastor de Anatolia">Perro de pastor de Anatolia</option>
+                                <option value="Perro de pastor de la Maremma y de los Abruzos">Perro de pastor de la Maremma y de los Abruzos</option>
+                                <option value="Perro de pastor de Rusia Meriodonal">Perro de pastor de Rusia Meriodonal</option>
+                                <option value="Perro de pastor islandés">Perro de pastor islandés</option>
+                                <option value="Perro de pastor mallorquín">Perro de pastor mallorquín</option>
+                                <option value="Perro de pastor polcao de las llanuras">Perro de pastor polcao de las llanuras</option>
+                                <option value="Perro de pastor portugués">Perro de pastor portugués</option>
+                                <option value="Perro de pastor rumano de los Cárpatos">Perro de pastor rumano de los Cárpatos</option>
+                                <option value="Perro de pastor yugoslavo de Charplanina">Perro de pastor yugoslavo de Charplanina</option>
+                                <option value="Perro de Taiwán">Perro de Taiwán</option>
+                                <option value="Perro del faraón">Perro del faraón</option>
+                                <option value="Perro dogo mallorquín">Perro dogo mallorquín</option>
+                                <option value="Perro finlandés de Laponia">Perro finlandés de Laponia</option>
+                                <option value="Perro lobo checoslovaco">Perro lobo checoslovaco</option>
+                                <option value="Perro lobo de Saarloos">Perro lobo de Saarloos</option>
+                                <option value="Perro negro y fuego para la caza del mapache">Perro negro y fuego para la caza del mapache</option>
+                                <option value="Perro pastor autraliano">Perro pastor autraliano</option>
+                                <option value="Perro pastor croata">Perro pastor croata</option>
+                                <option value="Perro pastor de Asia Central">Perro pastor de Asia Central</option>
+                                <option value="Perro pastor de los Prineos de pelo largo">Perro pastor de los Prineos de pelo largo</option>
+                                <option value="Perro pastor de Shetland">Perro pastor de Shetland</option>
+                                <option value="Perro pastor del Cáucaso">Perro pastor del Cáucaso</option>
+                                <option value="Perro pastor polaco de Podhale">Perro pastor polaco de Podhale</option>
+                                <option value="Perro pastor rumano de Mioritza">Perro pastor rumano de Mioritza</option>
+                                <option value="Perro San Bernardo">Perro San Bernardo</option>
+                                <option value="Perro sin pelo del Perú">Perro sin pelo del Perú</option>
+                                <option value="Perro smous holandés">Perro smous holandés</option>
+                                <option value="Perro sueco de Lapnia">Perro sueco de Lapnia</option>
+                                <option value="Perro tejonero de Westfalia">Perro tejonero de Westfalia</option>
+                                <option value="Perro tejonero sueco">Perro tejonero sueco</option>
+                                <option value="Petit brabançon">Petit brabançon</option>
+                                <option value="Pinscher alemán">Pinscher alemán</option>
+                                <option value="Pinscher austriaco">Pinscher austriaco</option>
+                                <option value="Pinscher miniatura">Pinscher miniatura</option>
+                                <option value="Podenco canario">Podenco canario</option>
+                                <option value="Podenco ibicenco">Podenco ibicenco</option>
+                                <option value="Podenco portugués">Podenco portugués</option>
+                                <option value="Pointer inglés">Pointer inglés</option>
+                                <option value="Porcelane">Porcelane</option>
+                                <option value="Prediguero de Drente">Prediguero de Drente</option>
+                                <option value="Pudelpointer">Pudelpointer</option>
+                                <option value="Pug">Pug</option>
+                                <option value="Puli">Puli</option>
+                                <option value="Pumi">Pumi</option>
+                                <option value="Rafeiro del Alentejo">Rafeiro del Alentejo</option>
+                                <option value="Rastreador de Hannover">Rastreador de Hannover</option>
+                                <option value="Rastreador montañés de Baviera">Rastreador montañés de Baviera</option>
+                                <option value="Rotweiler">Rotweiler</option>
+                                <option value="Sabueso alemán">Sabueso alemán</option>
+                                <option value="Sabueso anglo-francés de tamaño mediano">Sabueso anglo-francés de tamaño mediano</option>
+                                <option value="Sabueso artesiano">Sabueso artesiano</option>
+                                <option value="Sabueso austriaco negro y fuego">Sabueso austriaco negro y fuego</option>
+                                <option value="Sabueso de Bosnia de pelo cerdoso">Sabueso de Bosnia de pelo cerdoso</option>
+                                <option value="Sabueso de Halden">Sabueso de Halden</option>
+                                <option value="Sabueso de Hamilton">Sabueso de Hamilton</option>
+                                <option value="Sabueso de Hygen">Sabueso de Hygen</option>
+                                <option value="Sabueso de Istria de pelo corto">Sabueso de Istria de pelo corto</option>
+                                <option value="Sabueso de Istria de pelo duro">Sabueso de Istria de pelo duro</option>
+                                <option value="Sabueso de montaña del Montenegro">Sabueso de montaña del Montenegro</option>
+                                <option value="Sabueso de Småland">Sabueso de Småland</option>
+                                <option value="Sabueso de Tirol">Sabueso de Tirol</option>
+                                <option value="Sabueso de Transilvania">Sabueso de Transilvania</option>
+                                <option value="Sabueso del Ariege">Sabueso del Ariege</option>
+                                <option value="Sabueso del Valle de Save">Sabueso del Valle de Save</option>
+                                <option value="Sabueso eslovaco">Sabueso eslovaco</option>
+                                <option value="Sabueso español">Sabueso español</option>
+                                <option value="Sabueso estirio de pelo áspero">Sabueso estirio de pelo áspero</option>
+                                <option value="Sabueso finlandés">Sabueso finlandés</option>
+                                <option value="Sabueso francés blanco y naranja">Sabueso francés blanco y naranja</option>
+                                <option value="Sabueso francés blanco y negro">Sabueso francés blanco y negro</option>
+                                <option value="Sabueso francés tricolor">Sabueso francés tricolor</option>
+                                <option value="Sabueso helénico">Sabueso helénico</option>
+                                <option value="Sabueso italiano de pelo duro">Sabueso italiano de pelo duro</option>
+                                <option value="Sabueso italiano de pelo raso">Sabueso italiano de pelo raso</option>
+                                <option value="Sabueso noruego">Sabueso noruego</option>
+                                <option value="Sabueso poitevin">Sabueso poitevin</option>
+                                <option value="Sabueso polaco">Sabueso polaco</option>
+                                <option value="Sabueso schiller">Sabueso schiller</option>
+                                <option value="Sabueso serbio">Sabueso serbio</option>
+                                <option value="Sabueso suizo">Sabueso suizo</option>
+                                <option value="Sabueso suizo pequeño">Sabueso suizo pequeño</option>
+                                <option value="Sabueso tricolor serbio">Sabueso tricolor serbio</option>
+                                <option value="Saluki">Saluki</option>
+                                <option value="Samoyedo">Samoyedo</option>
+                                <option value="Schapendoes neerlandés">Schapendoes neerlandés</option>
+                                <option value="Schipperke">Schipperke</option>
+                                <option value="Schnauzer">Schnauzer</option>
+                                <option value="Schnauzer gigante">Schnauzer gigante</option>
+                                <option value="Schnauzer miniatura">Schnauzer miniatura</option>
+                                <option value="Scottish terrier">Scottish terrier</option>
+                                <option value="Sealyham terrier">Sealyham terrier</option>
+                                <option value="Setter gordon">Setter gordon</option>
+                                <option value="Setter inglés">Setter inglés</option>
+                                <option value="Setter irlandés rojo">Setter irlandés rojo</option>
+                                <option value="Setter irlandés rojo y blanco">Setter irlandés rojo y blanco</option>
+                                <option value="Shar pei">Shar pei</option>
+                                <option value="Shiba">Shiba</option>
+                                <option value="Shih tzu">Shih tzu</option>
+                                <option value="Shikoku">Shikoku</option>
+                                <option value="Skye terrier">Skye terrier</option>
+                                <option value="Sloughi">Sloughi</option>
+                                <option value="Soft coated wheaten terrier irlandés">Soft coated wheaten terrier irlandés</option>
+                                <option value="Spaniel azul de Picardia">Spaniel azul de Picardia</option>
+                                <option value="Spaniel bretón">Spaniel bretón</option>
+                                <option value="Spaniel continental enano de compañía">Spaniel continental enano de compañía</option>
+                                <option value="Spaniel de Font-Audemer">Spaniel de Font-Audemer</option>
+                                <option value="Spaniel francés">Spaniel francés</option>
+                                <option value="Spaniel japonés">Spaniel japonés</option>
+                                <option value="Spaniel picardo">Spaniel picardo</option>
+                                <option value="Spaniel tibetano">Spaniel tibetano</option>
+                                <option value="Spitz alemán">Spitz alemán</option>
+                                <option value="Spitz de los Visigodos - Vallhund sueco">Spitz de los Visigodos - Vallhund sueco</option>
+                                <option value="Spitz finlandés">Spitz finlandés</option>
+                                <option value="Spitz japonés">Spitz japonés</option>
+                                <option value="Spitz norrbotten">Spitz norrbotten</option>
+                                <option value="Springer spaniel galés">Springer spaniel galés</option>
+                                <option value="Springer spaniel inglés">Springer spaniel inglés</option>
+                                <option value="Staffordshire bull terrier">Staffordshire bull terrier</option>
+                                <option value="Sussex spaniel">Sussex spaniel</option>
+                                <option value="Tchuvatch eslovaco">Tchuvatch eslovaco</option>
+                                <option value="Teckel para la caza del conejo">Teckel para la caza del conejo</option>
+                                <option value="Terranova">Terranova</option>
+                                <option value="Terrier brasileño">Terrier brasileño</option>
+                                <option value="Terrier cazador alemán">Terrier cazador alemán</option>
+                                <option value="Terrier checo">Terrier checo</option>
+                                <option value="Terrier glen de imaal irlandés">Terrier glen de imaal irlandés</option>
+                                <option value="Terrier inglés toy">Terrier inglés toy</option>
+                                <option value="Terrier irlandés">Terrier irlandés</option>
+                                <option value="Terrier japonés">Terrier japonés</option>
+                                <option value="Terrier ruso negro">Terrier ruso negro</option>
+                                <option value="Terrier sedoso australiano">Terrier sedoso australiano</option>
+                                <option value="Terrier tibetano">Terrier tibetano</option>
+                                <option value="Thai ridgeback dog">Thai ridgeback dog</option>
+                                <option value="Tosa">Tosa</option>
+                                <option value="Volpino italiano">Volpino italiano</option>
+                                <option value="Weimaraner">Weimaraner</option>
+                                <option value="Welsh corgi cardigan">Welsh corgi cardigan</option>
+                                <option value="Welsh corgi pembroke">Welsh corgi pembroke</option>
+                                <option value="Welsh terrier">Welsh terrier</option>
+                                <option value="West highland white terrier">West highland white terrier</option>
+                                <option value="Whippet">Whippet</option>
+                                <option value="Xoloitzcuintle">Xoloitzcuintle</option>
+                                <option value="Yorkshire terrier">Yorkshire terrier</option>
+
+                            </select>
+
+                            <label class="_label _label-modal">Número de tatuaje</label>
+                            <input class="_form-input _label-form _font _form-input-modal" id="ip_tatuaje" type="text" ng-model="Perro.tatuaje">
+                            <label class="_label _label-modal">Nacimiento</label>
+                            <input class="_form-input _label-form _font _form-input-modal" id="ip_nacimiento" type="text" ng-model="Perro.nacimiento">
+                            <label class="_label _label-modal">Pedigree</label>
+                            <input class="_form-input _label-form _font _form-input-modal" id="ip_pedigree" type="text" ng-model="Perro.pedigree">
+                            <label class="_label _label-modal">Sexo</label>
+                            <input class="_form-input _label-form _font _form-input-modal" id="ip_sexo" type="text" ng-model="Perro.sexo">
+                            <label class="_label _label-modal">Señas particulares</label>
+                            <input class="_form-input _label-form _font _form-input-modal" id="ip_particulares" type="text" ng-model="Perro.particulares">
+                            <label class="_label _label-modal">Color</label>
+                            <input class="_form-input _label-form _font _form-input-modal" id="ip_color" type="text" ng-model="Perro.color">
+                            <label class="_label _label-modal">Peso</label>
+                            <input class="_form-input _label-form _font _form-input-modal" id="ip_peso" type="text" ng-model="Perro.peso">
+                            <label class="_label _label-modal">Tipo de pelo</label>
+                            <input class="_form-input _label-form _font _form-input-modal" id="ip_pelo" type="text" ng-model="Perro.pelo">
+                            <label class="_label _label-modal">Altura</label>
+                            <input class="_form-input _label-form _font _form-input-modal" id="ip_altura" type="text" ng-model="Perro.altura">
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" ng-click="RegistroInicialPerro(Perro)" data-dismiss="modal">Guardar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para pago de perros-->
+    <div class="modal fade" id="modalPagoPerro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Realiza tus pagos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form id="listaPagoPerros">
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button id="confirmar" type="button" class="btn btn-secondary" data-dismiss="modal">Confirmar</button>
+
+                    <script>
+                        $('#confirmar').click(function() {
+
+                            const selec = document.getElementsByName("perro");
+
+                            for (let i = 0; i < selec.length; i++) {
+                                if (selec[i].checked) {
+                                    var seleccion = selec[i].value;
+                                }
+                            }
+
+                            var url = '@Url.Action("SendPayReMensualPerro", "Pagos", new { idPerro = "parametro"})';
+
+                            var url = url.replace("parametro", encodeURIComponent(seleccion));
+
+                            window.location.href = url;
+                            });
+                    </script>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal para eliminar perros-->
+    <div class="modal fade" id="modalEliminarPerro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Elimina permanentemente los datos de tu perro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form id="listaBorrarPerros">
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button id="confirmarEliminar" type="button" class="btn btn-secondary" data-dismiss="modal">Eliminar</button>
+
+                    <script>
+                        $('#confirmarEliminar').click(function() {
+
+                            const selec = document.getElementsByName("perroBorrar");
+
+                            for (let i = 0; i < selec.length; i++) {
+                                if (selec[i].checked) {
+                                    var seleccion = selec[i].value;
+                                }
+                            }
+
+                            var url = '@Url.Action("EliminarPerro", "Usuario", new { idPerro = "parametro"})';
+
+                            var url = url.replace("parametro", encodeURIComponent(seleccion));
+
+                            window.location.href = url;
+
+                            });
+                    </script>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para registro de vacunas-->
+
+    <div class="modal fade" id="modalRegistroVacunas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered _tabla-vacunas-real _tabla-vacunas" role="document">
+            <div class="modal-content">
+
+                <div>
+                    <table>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Vacunación</th>
+                            <th>Próxima vacuna</th>
+                            <th>Fórmula</th>
+                            <th>Veterinario</th>
+                        </tr>
+                        <tr>
+                            <td>Rabia</td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Rabia_date_l"></label>
+                                <input type="date" id="Rabia_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Rabia_prox_l"></label>
+                                <input type="date" id="Rabia_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Rabia_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Rabia_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Rabia_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Rabia_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Parvovirus</td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Parvo_date_l"></label>
+                                <input type="date" id="Parvo_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Parvo_prox_l"></label>
+                                <input type="date" id="Parvo_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Parvo_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Parvo_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Parvo_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Parvo_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Distemper</td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Diste_date_l"></label>
+                                <input type="date" id="Diste_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Diste_prox_l"></label>
+                                <input type="date" id="Diste_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Diste_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Diste_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Diste_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Diste_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Adenovirus-2</td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Adeno_date_l"></label>
+                                <input type="date" id="Adeno_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Adeno_prox_l"></label>
+                                <input type="date" id="Adeno_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Adeno_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Adeno_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Adeno_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Adeno_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Influenza</td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Influ_date_l"></label>
+                                <input type="date" id="Influ_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Influ_prox_l"></label>
+                                <input type="date" id="Influ_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Influ_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Influ_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Influ_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Influ_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Leptospirosis</td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lepto_date_l"></label>
+                                <input type="date" id="Lepto_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lepto_prox_l"></label>
+                                <input type="date" id="Lepto_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lepto_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Lepto_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lepto_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Lepto_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Bordetella</td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Borde_date_l"></label>
+                                <input type="date" id="Borde_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Borde_prox_l"></label>
+                                <input type="date" id="Borde_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Borde_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Borde_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Borde_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Borde_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Enfermedad de Lyme</td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lyme_date_l"></label>
+                                <input type="date" id="Lyme_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lyme_prox_l"></label>
+                                <input type="date" id="Lyme_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lyme_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Lyme_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lyme_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Lyme_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr1_name_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr1_name" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr1_date_l"></label>
+                                <input type="date" id="Otr1_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr1_prox_l"></label>
+                                <input type="date" id="Otr1_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr1_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr1_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr1_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr1_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr2_name_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr2_name" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr2_date_l"></label>
+                                <input type="date" id="Otr2_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr2_prox_l"></label>
+                                <input type="date" id="Otr2_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr2_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr2_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr2_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr2_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr3_name_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr3_name" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr3_date_l"></label>
+                                <input type="date" id="Otr3_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr3_prox_l"></label>
+                                <input type="date" id="Otr3_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr3_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr3_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr3_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr3_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr4_name_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr4_name" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr4_date_l"></label>
+                                <input type="date" id="Otr4_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr4_prox_l"></label>
+                                <input type="date" id="Otr4_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr4_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr4_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr4_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr4_vet" name="input-table" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr5_name_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr5_name" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr5_date_l"></label>
+                                <input type="date" id="Otr5_date" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr5_prox_l"></label>
+                                <input type="date" id="Otr5_prox" name="input-table" class="ocultar-input _input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr5_form_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr5_form" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Otr5_vet_l"></label>
+                                <input class="ocultar-input _input-table" type="text" id="Otr5_vet" name="input-table" />
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="_button-table-container">
+                        <button class="_button-table" id="actualizar_tablaVacunas" @*ng-click="ActualizarDatosVacunas(Vacunas)"*@>Actualizar</button>
+                        <button class="_button-table" id="btn-ingresar">Ingresar</button>
+                        <button class="_button-table" id="cancelar-ingreso">Cancelar</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para el historial de competencias-->
+
+    <div class="modal fade" id="modalRegistroCompetencias" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered _tabla-vacunas-camada" role="document">
+            <div class="modal-content">
+
+                <div>
+                    <table>
+                        <tr>
+                            <th colspan="7">Entrenamiento (días a la semana)</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <label>IPO-PROTECCIÓN-RASTREO</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Obediencia_l"></label>
+                                <input type="number" id="Obediencia" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Caminata</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Caminata_l"></label>
+                                <input type="number" id="Caminata" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <label>Juego</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Juego_l"></label>
+                                <input type="number" id="Juego" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Terapia</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Terapia_l"></label>
+                                <input type="number" id="Terapia" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th colspan="7">Competencias</th>
+                        </tr>
+
+                        <tr>
+                            <th>Títulos</th>
+                            <th>Fecha</th>
+                            <th>Lugar</th>
+                            <th>Juez</th>
+                            <th>Posición</th>
+                            <th>Clase</th>
+                            <th>Calificación</th>
+                        </tr>
+                        <!--Título1-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Titulo1_l"></label>
+                                <input type="text" id="Titulo1" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Fecha1_l"></label>
+                                <input type="date" id="Fecha1" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lugar1_l"></label>
+                                <input type="text" id="Lugar1" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Juez1_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Juez1" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion1_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion1" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Clase1_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Clase1" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Calificacion1_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Calificacion1" name="input-table" />
+                            </td>
+                        </tr>
+
+                        <!--Título2-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Titulo2_l"></label>
+                                <input type="text" id="Titulo2" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Fecha2_l"></label>
+                                <input type="date" id="Fecha2" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lugar2_l"></label>
+                                <input type="text" id="Lugar2" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Juez2_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Juez2" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion2_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion2" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Clase2_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Clase2" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Calificacion2_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Calificacion2" name="input-table" />
+                            </td>
+                        </tr>
+
+                        <!--Título3-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Titulo3_l"></label>
+                                <input type="text" id="Titulo3" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Fecha3_l"></label>
+                                <input type="date" id="Fecha3" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lugar3_l"></label>
+                                <input type="text" id="Lugar3" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Juez3_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Juez3" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion3_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion3" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Clase3_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Clase3" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Calificacion3_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Calificacion3" name="input-table" />
+                            </td>
+                        </tr>
+
+                        <!--Título4-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Titulo4_l"></label>
+                                <input type="text" id="Titulo4" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Fecha4_l"></label>
+                                <input type="date" id="Fecha4" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lugar4_l"></label>
+                                <input type="text" id="Lugar4" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Juez4_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Juez4" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion4_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion4" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Clase4_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Clase4" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Calificacion4_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Calificacion4" name="input-table" />
+                            </td>
+                        </tr>
+
+                        <!--Título5-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Titulo5_l"></label>
+                                <input type="text" id="Titulo5" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Fecha5_l"></label>
+                                <input type="date" id="Fecha5" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lugar5_l"></label>
+                                <input type="text" id="Lugar5" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Juez5_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Juez5" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion5_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion5" name="input-table" "            />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Clase5_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Clase5" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Calificacion5_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Calificacion5" name="input-table" "            />
+                            </td>
+                        </tr>
+
+                        <!--Título6-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Titulo6_l"></label>
+                                <input type="text" id="Titulo6" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Fecha6_l"></label>
+                                <input type="date" id="Fecha6" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Lugar6_l"></label>
+                                <input type="text" id="Lugar6" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Juez6_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Juez6" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion6_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion6" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Clase6_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Clase6" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Calificacion6_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Calificacion6" name="input-table" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th colspan="7">Próximas Competencias</th>
+                        </tr>
+
+                        <!--Próxima competencia 1-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre1_l"></label>
+                                <input type="text" id="Nombre1" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Cuando1_l"></label>
+                                <input type="date" id="Cuando1" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Donde1_l"></label>
+                                <input type="text" id="Donde1" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Que1_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Que1" name="input-table" />
+                            </td>
+                        </tr>
+
+                        <!--Próxima competencia 2-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre2_l"></label>
+                                <input type="text" id="Nombre2" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Cuando2_l"></label>
+                                <input type="date" id="Cuando2" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Donde2_l"></label>
+                                <input type="text" id="Donde2" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Que2_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Que2" name="input-table" />
+                            </td>
+                        </tr>
+
+                        <!--Próxima competencia 3-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre3_l"></label>
+                                <input type="text" id="Nombre3" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Cuando3_l"></label>
+                                <input type="date" id="Cuando3" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Donde3_l"></label>
+                                <input type="text" id="Donde3" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Que3_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Que3" name="input-table" />
+                            </td>
+                        </tr>
+
+                        <!--Próxima competencia 4-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre4_l"></label>
+                                <input type="text" id="Nombre4" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Cuando4_l"></label>
+                                <input type="date" id="Cuando4" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Donde4_l"></label>
+                                <input type="text" id="Donde4" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Que4_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Que4" name="input-table" />
+                            </td>
+                        </tr>
+
+                        <!--Próxima competencia 5-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre5_l"></label>
+                                <input type="text" id="Nombre5" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Cuando5_l"></label>
+                                <input type="date" id="Cuando5" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Donde5_l"></label>
+                                <input type="text" id="Donde5" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Que5_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Que5" name="input-table" />
+                            </td>
+                        </tr>
+
+                    </table>
+                    <div class="_button-table-container">
+                        <button class="_button-table" id="actualizar_tablaCompetencias">Actualizar</button>
+                        <button class="_button-table" id="btn-ingresar-competencias">Ingresar</button>
+                        <button class="_button-table" id="cancelar-ingreso-competencias">Cancelar</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para el historial de camadas-->
+
+    <div class="modal fade" id="modalRegistroCamadas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered _tabla-vacunas-camada" role="document">
+            <div class="modal-content">
+
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <label>Camada</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Camada_l"></label>
+                                <input type="text" id="Camada" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Ultrasonido 1</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Ultra1_l"></label>
+                                <input type="date" id="Ultra1" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Ultrasonido 2</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Ultra2_l"></label>
+                                <input type="date" id="Ultra2" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Progesterona</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Proge1_l"></label>
+                                <input type="date" id="Proge1" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Progesterona</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Proge2_l"></label>
+                                <input type="date" id="Proge2" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Progesterona</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Proge3_l"></label>
+                                <input type="date" id="Proge3" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Parto</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Parto_l"></label>
+                                <input type="date" id="Parto" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Inicio</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Inicio_l"></label>
+                                <input type="time" id="Inicio" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Fin</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Fin_l"></label>
+                                <input type="time" id="Fin" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Cruza</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Cruza_l"></label>
+                                <input type="date" id="Cruza" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Madre</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Madre_l"></label>
+                                <input type="text" id="Madre" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Padre</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Padre_l"></label>
+                                <input type="text" id="Padre" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Total</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Total_l"></label>
+                                <input type="number" id="Total" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Vivos</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Vivos_l"></label>
+                                <input type="number" id="Vivos" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label>Muertos</label>
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Muertos_l"></label>
+                                <input type="number" id="Muertos" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Hora de nacido</th>
+                            <th>Sexo</th>
+                            <th>Color</th>
+                            <th>Posición</th>
+                            <th>Peso</th>
+                            <th>Notas</th>
+                        </tr>
+                        <!--Cachorro1-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c1_l"></label>
+                                <input type="text" id="Nombre_c1" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c1_l"></label>
+                                <input type="time" id="Hora_c1" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c1_l"></label>
+                                <input type="text" id="Sexo_c1" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c1_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c1" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c1_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c1" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c1_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c1" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c1_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c1" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro2-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c2_l"></label>
+                                <input type="text" id="Nombre_c2" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c2_l"></label>
+                                <input type="time" id="Hora_c2" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c2_l"></label>
+                                <input type="text" id="Sexo_c2" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c2_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c2" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c2_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c2" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c2_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c2" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c2_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c2" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro3-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c3_l"></label>
+                                <input type="text" id="Nombre_c3" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c3_l"></label>
+                                <input type="time" id="Hora_c3" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c3_l"></label>
+                                <input type="text" id="Sexo_c3" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c3_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c3" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c3_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c3" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c3_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c3" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c3_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c3" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro4-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c4_l"></label>
+                                <input type="text" id="Nombre_c4" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c4_l"></label>
+                                <input type="time" id="Hora_c4" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c4_l"></label>
+                                <input type="text" id="Sexo_c4" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c4_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c4" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c4_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c4" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c4_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c4" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c4_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c4" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro5-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c5_l"></label>
+                                <input type="text" id="Nombre_c5" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c5_l"></label>
+                                <input type="time" id="Hora_c5" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c5_l"></label>
+                                <input type="text" id="Sexo_c5" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c5_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c5" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c5_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c5" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c5_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c5" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c5_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c5" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro6-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c6_l"></label>
+                                <input type="text" id="Nombre_c6" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c6_l"></label>
+                                <input type="time" id="Hora_c6" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c6_l"></label>
+                                <input type="text" id="Sexo_c6" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c6_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c6" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c6_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c6" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c6_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c6" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c6_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c6" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro7-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c7_l"></label>
+                                <input type="text" id="Nombre_c7" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c7_l"></label>
+                                <input type="time" id="Hora_c7" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c7_l"></label>
+                                <input type="text" id="Sexo_c7" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c7_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c7" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c7_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c7" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c7_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c7" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c7_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c7" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro8-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c8_l"></label>
+                                <input type="text" id="Nombre_c8" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c8_l"></label>
+                                <input type="time" id="Hora_c8" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c8_l"></label>
+                                <input type="text" id="Sexo_c8" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c8_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c8" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c8_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c8" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c8_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c8" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c8_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c8" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro9-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c9_l"></label>
+                                <input type="text" id="Nombre_c9" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c9_l"></label>
+                                <input type="time" id="Hora_c9" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c9_l"></label>
+                                <input type="text" id="Sexo_c9" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c9_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c9" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c9_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c9" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c9_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c9" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c9_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c9" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro10-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c10_l"></label>
+                                <input type="text" id="Nombre_c10" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c10_l"></label>
+                                <input type="time" id="Hora_c10" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c10_l"></label>
+                                <input type="text" id="Sexo_c10" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c10_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c10" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c10_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c10" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c10_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c10" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c10_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c10" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro11-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c11_l"></label>
+                                <input type="text" id="Nombre_c11" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c11_l"></label>
+                                <input type="time" id="Hora_c11" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c11_l"></label>
+                                <input type="text" id="Sexo_c11" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c11_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c11" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c11_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c11" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c11_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c11" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c11_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c11" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro12-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c12_l"></label>
+                                <input type="text" id="Nombre_c12" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c12_l"></label>
+                                <input type="time" id="Hora_c12" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c12_l"></label>
+                                <input type="text" id="Sexo_c12" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c12_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c12" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c12_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c12" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c12_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c12" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c12_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c12" name="input-table" />
+                            </td>
+                        </tr>
+                        <!--Cachorro13-->
+                        <tr>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Nombre_c13_l"></label>
+                                <input type="text" id="Nombre_c13" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Hora_c13_l"></label>
+                                <input type="time" id="Hora_c13" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Sexo_c13_l"></label>
+                                <input type="text" id="Sexo_c13" name="input-table" class="ocultar-input _input-table-camada" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Color_c13_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Color_c13" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Posicion_c13_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Posicion_c13" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Peso_c13_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Peso_c13" name="input-table" />
+                            </td>
+                            <td>
+                                <label class="mostrar-label" name="label" id="Notas_c13_l"></label>
+                                <input class="ocultar-input _input-table-camada" type="text" id="Notas_c13" name="input-table" />
+                            </td>
+                        </tr>
+
+                    </table>
+                    <div class="_button-table-container">
+                        <button class="_button-table" id="actualizar_tablaCamadas">Actualizar</button>
+                        <button class="_button-table" id="btn-ingresar-camada">Ingresar</button>
+                        <button class="_button-table" id="cancelar-ingreso-camada">Cancelar</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="_footer-copyright">
+            &copy; @DateTime.Now.Year - Petsgrow
+            <a style="cursor:pointer" data-toggle="modal" data-target="#staticBackdrop"> - Política de privacidad, términos y condiciones</a>
+        </div>
+        <div class="_footer-social">
+            <ul class="_footer-icons">
+                <li class="_footer-social-icon">
+                    <img src="~/Content/Images/facebook_blanco.png" id="facebook" />
+                </li>
+                <li class="_footer-social-icon">
+                    <img src="~/Content/Images/instagram_blanco.png" id="instagram" />
+                </li>
+                <li class="_footer-social-icon">
+                    <img src="~/Content/Images/twitter_blanco.png" id="twitter" />
+                </li>
+            </ul>
+        </div>
+        <div class="_contact-container">
+            <p>
+                <span>Correo: petsgrowmx@gmail.com</span> <br />
+                <span>Teléfono: 722-659 7833</span>
+            </p>
+        </div>
+        <!--Modal para términos y condiciones-->
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header _modal-header-color">
+                        <h5 class="modal-title" id="staticBackdropLabel">Política de privacidad, términos y condiciones</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body _modal-overflow">
+                        <h2>POLÍTICA DE PRIVACIDAD</h2>
+                        <h3>1.	RESPONSABLE </h3>
+                        <p>
+                            Felipe Alberto Arcos Casarrubias, con --, que representa a Pets Grow! y que en los sucesivo se denominará www.petsgrowmx.com es responsable de recabar sus datos personales, del uso que se le dé a los mismos y de su protección en los casos en los que se recaben a través de su página web o de manera física por cualquiera de sus empleados, socios, asesores o asociados.
+                        </p>
+                        <h3>2.	FINALIDAD </h3>
+                        <p>
+                            Su información personal será utilizada para proveer los servicios y productos que ha solicitado a través de nuestra plataforma, de conformidad con los términos y condiciones publicados en la misma o cualquiera de los canales comerciales y publicitarios utilizados por la empresa, para informarle sobre cambios en los mismos y evaluar la calidad del servicio que le brindamos.
+                        </p>
+                        <h3>3.	DATOS A RECABAR</h3>
+                        <p>
+                            Para las finalidades antes mencionadas, requerimos obtener los siguientes datos personales:
+                        </p>
+                        <p>
+                            <ul>
+                                <li>Nombre completo</li>
+                                <li>Correo electrónico</li>
+                                <li>Domicilio</li>
+                                <li>Teléfono</li>
+                            </ul>
+                        </p>
+                        <h3>4.	DATOS PERSONALES SENSIBLES</h3>
+                        <p>
+                            De conformidad con la legislación mexicana vigente, se conocen como “Datos Personales Sensibles” a “aquellos que puedan revelar aspectos como origen racial o étnico, estado de salud presente y futuro, información genética, creencias religiosas, filosóficas y/o morales, afiliación sindical, opiniones políticas, preferencia sexual”.
+                        </p>
+                        <p>
+                            En caso de que www.petsgrowmx.com  llegue a requerir Datos Personales Sensibles de los usuarios, estos deberán ser proporcionados bajo su consentimiento expreso.
+                        </p>
+                        <h3>5.	MANTENIMIENTO DE LA INFORMACIÓN</h3>
+                        <p>
+                            Si usted desea optar por restringir el uso y/o divulgación de su información personal efectuado por nosotros, salvo por lo expresamente establecido en esta Política de Privacidad y/o para procesar cualquier orden de compra, generalmente tendrá dicha opción cuando envía por primera vez su información personal a través de los Sitios web de “www.petsgrowmx.com”. Simplemente indique su deseo de restringir el uso, seleccionando o no el recuadro proveído a tal efecto. Si usted desea rectificar o eliminar cualquier información personal que haya proporcionado previamente, sin restringir el uso, por favor envíenos un mensaje a petsgrowmx@gmail.com
+                        </p>
+                        <h3>6.	SEGURIDAD</h3>
+                        <p>
+                            El sitio web de “www.petsgrowmx.com” y sus oficinas utilizan medidas de seguridad físicas, electrónicas y administrativas para evitar la pérdida, el uso indebido o la alteración de la información bajo nuestro control.
+                        </p>
+                        <p>
+                            Asimismo, Utilizamos conexiones Secure Socket Layer (“SSL”) con codificación de 128 bits para ciertas transacciones y datos confidenciales. Al utilizar un navegador seguro, toda la información que usted proporcione es recibida a través de Internet de forma codificada. Todas las páginas web seguras utilizan un certificado electrónico emitido por una autoridad de certificadora. Todas las páginas web seguras tienen un “certificado de sitio web”. Para ver este certificado, haga clic en la imagen del candado cerrado o de la llave en la barra inferior de la ventana de su navegador.
+                        </p>
+                        <p>
+                            Desafortunadamente, ninguna transmisión de datos en línea o cualquier red inalámbrica puede ser 100% segura. Consecuentemente, en tanto que nos esforzamos en proteger su información personal, no podemos asegurar o garantizar la seguridad de la información que usted transmite, lo cual realiza bajo propio riesgo. Usted puede reportarnos cualquier abuso de la red y cualquier riesgo de seguridad enviando un mensaje a petsgrowmx@gmail.com
+                        </p>
+                        <p>
+                            Asimismo, en caso de pérdida, destrucción, robo o mal uso de dicha información usted será informado de los sucesos y las circunstancias en las que ocurrió.
+                        </p>
+                        <h3>7.	DERECHOS ARCO Y MECANISMOS DE EJERCICIO</h3>
+                        <p>
+                            Los usuarios podrán solicitar el ejercicio de sus derechos a:
+                        </p>
+                        <p>
+                            <ul>
+                                <li>Acceder a sus Datos Personales;</li>
+                                <li>Rectificar sus Datos Personales cuando sean inexactos o incompletos;</li>
+                                <li>Cancelar sus Datos Personales;</li>
+                                <li>Oponerse por causa legítima al Tratamiento de sus Datos Personales, y/o</li>
+                                <li>Revocar su consentimiento para el Tratamiento de sus Datos Personales en cualquier momento, a fin de que se deje de hacer uso de los mismos.</li>
+                            </ul>
+                        </p>
+                        <p>
+                            Sin embargo, es importante que tenga en cuenta que no en todos los casos podremos atender su solicitud para cancelar sus Datos Personales, oponerse al Tratamiento o revocar su consentimiento, ya que es posible que por alguna obligación legal requerimos seguir tratando sus Datos Personales. El usuario deberá considerar que, para ciertos fines, la revocación de su consentimiento implicará la suspensión del servicio o la conclusión de su relación con www.petsgrowmx.com
+                        </p>
+                        <p>
+                            El ejercicio de los derechos de Acceso, Rectificación, Cancelación u Oposición de Datos Personales y Revocación del consentimiento que realicen los usuarios deberá realizarse previa solicitud a www.petsgrowmx.com y contener al menos lo siguiente:
+                        </p>
+                        <p>
+                            <ul>
+                                <li>El nombre del titular, domicilio y correo electrónico para comunicarle la respuesta a su solicitud;</li>
+                                <li>Los documentos que acrediten la identidad o, en su caso, la representación legal del titular;</li>
+                                <li>La descripción clara y precisa de los Datos Personales respecto de los que se busca ejercer alguno de los derechos antes mencionados (en el caso de rectificación se deberá indicar las modificaciones a realizar y aportar la documentación que sustente su petición);</li>
+                                <li>Cualquier otro elemento o documento que facilite la localización de los Datos Personales.</li>
+                            </ul>
+                        </p>
+                        <p>
+                            Para efecto de lo anterior www.petsgrowmx.com pone a disposición de los usuarios el siguiente correo electrónico: petsgrowmx@gmail.com
+                        </p>
+                        <p>
+                            www.petsgrowmx.com dará respuesta a la solicitud de los usuarios en un plazo no mayor a 20 días hábiles contados a partir de la fecha en que reciba la petición correspondiente, a través del correo electrónico que haya sido proporcionado para tal efecto.
+                        </p>
+                        <p>
+                            El ejercicio por parte de los usuarios de los derechos antes mencionados deberá sujetarse a las leyes y reglamentos aplicables vigentes en México.
+                        </p>
+                        <h3>8.	TRANSFERENCIA DE DATOS</h3>
+                        <p>
+                            www.petsgrowmx.com podrá, sin consentimiento del titular, revelar, divulgar y/o transferir dentro y fuera del país los Datos Personales proporcionados por los usuarios, a sus empresas filiales, subsidiarias y/o relacionadas, así como para dar cumplimiento con disposiciones legales que así lo requieran, o bien cuando sea solicitado por autoridades competentes.
+                        </p>
+                        <p>
+                            De igual forma podrá revelar, divulgar y/o transferir dentro y fuera del país los Datos Personales a proveedores, patrocinadores, publicistas, contratistas y/o socios para fines comerciales, como proporcionar datos estadísticos a anunciantes potenciales, enviar publicidad a los usuarios de acuerdo a sus intereses específicos y conducir investigaciones de mercado. Los terceros que reciban la información relacionada con los Datos Personales de los usuarios están obligados a cumplir con lo previsto en este Aviso de Privacidad, así como con los Términos y Condiciones del Sitio y de la legislación aplicable en México.
+                        </p>
+                        <p>
+                            El titular de los Datos Personales podrá otorgar su consentimiento a la transferencia de sus Datos Personales en los términos descritos en el presente Aviso al momento de registrarse al Sitio.
+                        </p>
+                        <h3>9.	COOKIES, DIRECCIÓN DE IP, BEACONS Y ANÁLISIS DE TRÁFICO</h3>
+                        <p>
+                            Su navegador incluye una función denominada “cookies”. Si está activada, las cookies pueden almacenar pequeñas cantidades de datos en su equipo sobre su visita a nuestro sitio web. Sin embargo, las cookies no nos proporcionan información personal a menos que usted nos proporcione información adicional. Las cookies nos ayudan a rastrear qué elementos son de su agrado y qué contenido pudo haber visto en sus visitas anteriores. Al visitar nuevamente nuestro sitio, las cookies nos pueden permitir personalizar nuestro contenido de acuerdo con sus preferencias. Podemos utilizar las cookies para:
+                        </p>
+                        <p>
+                            <ul>
+                                <li>Mantener un registro de visitas subsiguientes a nuestro sitio web;</li>
+                                <li>Acumular y reportar información anónima, agregada y estadística sobre el uso del sitio web;</li>
+                                <li>Ofrecer contenido específico de acuerdo con sus intereses o registro de visitas anteriores;</li>
+                                <li>Almacenar su contraseña para evitar ingresarla en cada visita a nuestros sitios web.</li>
+                            </ul>
+                        </p>
+                        <p>
+                            Usted también puede desactivar las cookies. Modificando las preferencias de su navegador usted puede aceptar o rechazar todas las cookies o solicitar una notificación cuando una cookie quede colocada.
+                        </p>
+                        <p>
+                            www.petsgrowmx.com no almacena o registra las direcciones de Protocolo de Internet (“IP”) de los visitantes de nuestro sitio web con fines publicitarios, pero sí podríamos almacenar direcciones IP en las bitácoras de servidores para fines de mantenimiento del sistema o para almacenar la ubicación de la fuente cuando alguien proporciona información personal. Una dirección IP es un número asignado a su equipo cada vez que ingresa a Internet. Un Proveedor de Servicio de Internet (“ISP”) generalmente asigna direcciones IP aleatorias al establecer la conexión. En el caso de redes de área local (“LAN”), protocolos de Internet de Banda Ancha (“DSL”) o usuarios de módem por cable, puede asignarse una dirección IP permanente a un equipo específico. Nosotros no podemos determinar su identidad únicamente por su dirección IP. Sin embargo, su dirección IP puede revelar el área geográfica desde la cual usted se conecta a Internet o qué ISP utiliza. Finalmente, otros sitios web que usted visita tienen direcciones IP y nosotros podemos recopilar las direcciones IP de dichos sitios y sus páginas, pero estos sitios IP nunca se asocian con usuarios de Internet.
+                        </p>
+                        <p>
+                            Nuestro sitio web tiene imágenes electrónicas (llamadas “pixeles”, “archivos GIF transparentes” o “web beacons”) que nos permiten a nosotros y a nuestros socios publicitarios, ver y acceder a cookies. En general, cualquier imagen electrónica vista como parte de una página web, incluyendo barras publicitarias, pueden actuar como web beacons. Los web beacons son de tamaño pequeño para evitar usar demasiado espacio en la pantalla de la computadora que puede usarse mejor para presentar contenido de utilidad. En algunos casos, estos archivos los proporciona nuestro socio de administración en línea. Estos archivos permiten a nuestro socio de administración en línea reconocer cookies específicos en su navegador, permitiéndonos saber qué anuncios atraen a los usuarios a nuestro sitio web. Nosotros u otro anunciante que trabaje con nuestro socio de administración en línea colocamos cookies. Nosotros también podríamos incluir web beacons en boletines con formato HTML que contengan gráficas que enviamos a nuestros subscriptores para contabilizar el número de boletines que han sido abiertos y leídos. También podríamos utilizar web beacons y cookies para monitorear su comportamiento y sus intereses en línea dentro de nuestro sitio web. La información recabada y compartida por medio de cookies y web beacons es anónima y no proporciona información personal. Esta información no contiene su nombre, dirección postal, número telefónico o dirección de correo electrónico.
+                        </p>
+                        <h3>10.	CAMBIOS EN EL AVISO</h3>
+                        <p>
+                            www.petsgrowmx.com se reserva el derecho de modificar en cualquier momento el contenido del presente Aviso de Privacidad. Cualquier cambio en el Aviso de Privacidad le será informado a sus usuarios a través del Sitio. Una vez que se publique el Aviso de Privacidad en el Sitio entrará en vigor automáticamente.
+                        </p>
+                        <p>
+                            La fecha de última actualización del presente aviso es el 10 de noviembre de 2020.
+                        </p>
+                        <h3>11.	DATOS DE CONTACTO</h3>
+                        <p>
+                            En caso de que usted tenga cualquier duda relativa a nuestro aviso de privacidad o política de privacidad usted puede comunicarse con nuestro departamento legal con el L. en D. Diego Alberto López Guerrero Echevarría, con domicilio en Arcadio Henkel #213 Col. Morelos 1ra Sección, C.p. 50120, Toluca, Estado de México, México,  al correo electrónico: diego.lopez@nookit.mx
+                        </p>
+                        <br />
+                        <h2>TÉRMINOS Y CONDICIONES</h2>
+                        <p>
+                            Pets Grow! en adelante www.petsgrowmx.com le ofrece ciertos servicios y productos al visitar, utilizar y realizar cualquier operación en nuestra página web, en adelante “NUESTRA PAGINA”, el presente documento establece los “términos y condiciones” a los cuales se someten todos los usuarios, y/o personas, en adelante “USUARIOS” que de cualquier forma hagan uso y/o utilicen nuestra página; de conformidad con el artículo 1803 del Código de Civil Federal; al momento de hacer uso de cualquiera de los Servicios, se considerará una absoluta y expresa aceptación de los términos y condiciones de uso aquí establecidos, asimismo acuerdan voluntariamente por ese simple hecho y se obligan a sujetarse en todos sus términos y condiciones, así como a cualquier otra disposición, requerimiento, lineamiento o similar, que sea de tiempo en tiempo establecida en nuestra página, directamente o a través de los vínculos que muestren dicha información.
+                        </p>
+                        <h3>PRODUCTOS Y SERVICIOS</h3>
+                        <p>
+                            www.petsgrowmx.com intenta proporcionar a los visitantes la facilidad de conocer de una forma general, acercándose a lo más exacto posible a la descripción de todos los productos desplegados en nuestra página. No obstante lo anterior, www.petsgrowmx.com no garantiza que la descripción de cualquier producto sea precisa, completa, detallada, vigente o libre de errores. En todo caso la descripción final del producto objeto de cualquier Oferta de Compra será la incluida en la Confirmación de Pedido correspondiente. El Cliente será responsable de verificar que el producto cumpla con la descripción señalada en la Orden de Compra y en la Confirmación de Pedido correspondiente en el momento de la entrega.
+                        </p>
+                        <p>
+                            La aparición de productos en nuestra página, no implica responsabilidad alguna de su disponibilidad, existencia, características particulares o la satisfacción de cualquier otro interés de nuestros usuarios. La información de nuestra página está enfocada para el mercado de los Estado Unidos Mexicanos, para usuarios de otras partes del mundo deberá ser considerada como un sitio de visita solamente.
+                        </p>
+                        <p>
+                            En el procedimiento de compra o contratación de los productos todo “usuario” deberá estar previamente registrado en www.petsgrowmx.com y tener su clave de usuario, proporcionando correo electrónico así como información personal como su nombre completo, deberá comprobar ser propietario de los mismos y declara bajo protesta de decir verdad, que los mismos corresponden a información veraz y vigente.
+                        </p>
+                        <p>
+                            Nada en nuestra página constituye ni constituirá una prescripción, receta, sugerencia, instrucción, consejo o asesoría médica, clínica, farmacéutica o sanitaria dirigida a nuestros usuarios. En nuestra página no se prestan servicios médicos, de enfermería ni de cualquier otra especialidad que deban ser administrados personalmente por un profesional autorizado. El usuario entiende y conviene que www.petsgrowmx.com no será responsable de cualquier daño o perjuicio que sufra con motivo de la compra o uso de cualquier producto publicado en nuestra página, y en este acto libera a www.petsgrowmx.com de cualquier obligación o responsabilidad que pueda ocurrir.
+                        </p>
+                        <h3>PRECIOS Y PAGOS</h3>
+                        <p>
+                            El precio que aparece para cada uno de los productos del sitio, representa el precio de venta al público aprobado en términos de la legislación aplicable y/o sugerida por el fabricante o proveedor correspondiente, incluyendo cuando sea aplicable, los impuestos asociados con la venta. Proporcione la forma de pago: Tarjeta de Crédito, sujeto a proceso de seguridad; Paypal únicamente si cuenta con su tarjeta verificada; deposito en efectivo, imprime tu confirmación de pedido y responde mandando una fotografía del comprobante de tu pago.
+                        </p>
+                        <p>
+                            A pesar de nuestros mejores esfuerzos, por causas atribuibles a nuestros proveedores de productos, de servicios de logística, por dificultades técnicas en la actualización de nuestra página y el tiempo que naturalmente puede llevarnos la prontitud en la revisión y actualización en nuestro sistema de precios, o errores de inventario, algunos de los productos desplegados en nuestra página podrían aparecer con un precio erróneo o no actualizado.
+                        </p>
+                        <h3>FACTURACION</h3>
+                        <p>
+                            El usuario podrá obtener una factura con relación a cualquier compra realizada en nuestra página en términos de la legislación fiscal vigente aplicable, mediante la inclusión de los datos del recibo de compra correspondiente en nuestra página www.petsgrowmx.com. La facturación electrónica solo podrá realizarse dentro del mes en el que se haya realizado la compra.
+                        </p>
+                        <h3>GARANTIAS</h3>
+                        <p>
+                            Los productos ofrecidos por www.petsgrowmx.com tendrán como fecha de vencimiento el último minuto de la fecha de entrega; sin embargo, los usuarios tendrán expedito su derecho para reclamar la garantía al fabricante del producto.
+                        </p>
+                        <h3>ENTREGA</h3>
+                        <p>
+                            www.petsgrowmx.com realizará de la mejor manera posible la entrega de los productos dentro de un lapso de 3 a 5 días hábiles a partir de la Confirmación de Pedido. El Cliente deberá verificar que el bien y/o producto sea el mismo que el descrito en la Confirmación de Pedido y en la Oferta de Compra.
+                        </p>
+                        <h3>CESE DEL SERVICIO</h3>
+                        <p>
+                            Para que sea procedente el cambio del producto o devolución de dinero se requiere que el producto objeto de la obligación contractual haya sido entregado defectuoso, no haya sido el que solicito el Usuario o bien no es apto para el consumo. Asimismo, para que procedan los cambios de producto o la devolución de dinero, se requiere que hayan sido solicitados dentro del plazo de 24 horas a partir de la entrega del producto; por políticas de la empresa las devoluciones serán procesadas en 72hrs hábiles tras haber sido aceptada la cancelación o devolución de un producto y que se encuentre en condiciones de cambio.
+                        </p>
+                        <p>
+                            Por ningún motivo se aceptarán cambio por razones diferentes a las mencionadas en el párrafo anterior o por las expresamente mencionadas en la ley, no procederán cambios por razones de gustos, apreciaciones o cambios de decisión del usuario.
+                        </p>
+                        <h3>RESPONSABILIDAD</h3>
+                        <p>
+                            www.petsgrowmx.com no es responsable por daños ocasionados por virus que puedan infectar el equipo de cómputo u otra propiedad del usuario debido al acceso en forma directa, o enviado a través de un vínculo o link de www.petsgrowmx.com por lo tanto no asume ninguna responsabilidad por el funcionamiento o cualesquiera daños y/o perjuicios que el Usuario estime puedan derivarse de la interacción de nuestra página con su equipo de cómputo, ni acepta ninguna responsabilidad por cualquier daño o perjuicio de elementos que puedan ofender o considerarse lesivos por el Usuario, ni por cualquier otro elemento que pudiera ser introducido por cualquier tercero violando los controles que tenemos en nuestra página.
+                        </p>
+                        <p>
+                            www.petsgrowmx.com no garantiza la continuidad total o parcial de nuestra página o las secciones que lo integran. www.petsgrowmx.com se excluye de responsabilidad por cualquier daño o perjuicio derivado de la falta de continuidad o disponibilidad de conexión en nuestra página, por lo que no asume ninguna responsabilidad por cualquier daño o perjuicio derivado de: I) El uso inadecuado por parte de los visitantes en nuestra página. II) La violación o afectación de cualquier derecho de propiedad industrial o intelectual, secreto industrial, derechos de la personalidad, o cualquier otro derecho de terceros, derivado de la difusión, explotación o almacenamiento de cualquier elemento de nuestra página que se realice por los visitantes del mismo. III) La comisión de actos de competencia o publicidad desleal por parte de cualquier tercero que hubiera obtenido elementos de nuestra página. IV) La falta de precisión, pertinencia, detalle del contenido de nuestra página. V) Que nuestra página no satisfaga las expectativas del Usuario o la información o los productos no le sean útiles para cualquier fin específico deseado por el Usuario.
+                        </p>
+                        <p>
+                            www.petsgrowmx.com no se hace responsable por interceptaciones ilegales o violación de sus sistemas o base de datos por parte de personas no autorizadas. Ni por la indebida utilización de la información obtenida por esos medios.
+                        </p>
+                        <h3>LEGISLACION APLICABLE </h3>
+                        <p>
+                            Por todo lo relativo a la interpretación y cumplimiento de los presentes términos y condiciones, las partes se someten a las leyes aplicables a los tribunales competentes en la ciudad de México, renunciando a cualquier otra jurisdicción que pudiere corresponderle por razón de su domicilio presentes o futuros.
+                        </p>
+                        <h3>CAMBIO EN EL ACUERDO</h3>
+                        <p>
+                            www.petsgrowmx.com se reserva el derecho de modificar los presentes Términos y Condiciones en cualquier momento, sin previo aviso y cuando lo considere conveniente, sin necesidad de avisar al usuario, sin que ello de lugar ni derecho a ninguna reclamación o indemnización por parte del usuario. El usuario en este acto conviene que los Términos y Condiciones únicamente son aplicables para las operaciones que realice www.-- de momento en momento y conviene en sujetarse y quedar obligado por cualquier modificación a los presentes Términos y Condiciones para cualquier operación que realice con posterioridad a dichas modificaciones. No obstante, lo anterior, toda vez que reconocemos la confianza que nuestros Usuarios depositan en www.petsgrowmx.com, los cambios que pudiesen llegar a darse en los presentes términos y condiciones, es con la finalidad de ofrecer y brindar un mejor servicio.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Entendido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="~/Scripts/Micriadero.js"></script>
+
+    <script>
+
+        var myDate = new Date();
+        var dd = myDate.getDate();
+
+        var mm = myDate.getMonth() + 1;
+        var yyyy = myDate.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        myDate = dd + '/' + mm + '/' + yyyy;
+
+
+        $('.datepicker').datepicker(
+            {
+                format: 'yyyy/mm/dd',
+                todayHighlight: true,
+                autoclose: true,
+                language: "es",
+                setDate: myDate
+            });
+
+        $('.datepicker').val(myDate);
+    </script>
+
+
+
+
+    <style>
+        #item_txt {
+            width: 20%;
+        }
+
+        #generarCodigo {
+            color: #fff;
+        }
+
+        #descargarCodigo {
+            width: 10%;
+            background-color: #3CB371;
+            color: #fff;
+            display: none;
+            text-align: center;
+            border: #eee solid 2px;
+            text-decoration: none;
+        }
+
+        #codigoQR {
+            width: 125px;
+            height: 125px;
+            margin-top: 25px;
+            border: 2px solid #eee;
+        }
+
+        ._codigoQR img {
+            height: 125px;
+            width: 125px;
+        }
+    </style>
+    <!--qr-->
+
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/qrcode.js"></script>
+    <script src="~/Scripts/mainQR.js"></script>
+
+
+</body>
+
+</html>
+
+
+

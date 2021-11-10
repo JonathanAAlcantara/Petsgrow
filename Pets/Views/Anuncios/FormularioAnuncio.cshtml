@@ -1,0 +1,296 @@
+﻿
+@{
+    ViewBag.Title = "FormularioAnuncio";
+    Layout = "~/Views/Shared/Layout_Inicio_Grid.cshtml";
+}
+
+<html>
+<head>
+    <script src="~/Scripts/angular.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="~/Content/FormularioAnuncio.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body ng-app="MyApp" ng-controller="MyController">
+    <div class="_container">
+        <!--PASOS-->
+        <div class="_progress-bar">
+            <div class="_step">
+                <p>Anuncio</p>
+                <div class="_num">
+                    <span>1</span>
+                </div>
+                <div class="_check fas fa-check"></div>
+            </div>
+            <div class="_step">
+                <p>Descripción</p>
+                <div class="_num">
+                    <span>2</span>
+                </div>
+                <div class="_check fas fa-check"></div>
+            </div>
+            <div class="_step">
+                <p>Contacto</p>
+                <div class="_num">
+                    <span>3</span>
+                </div>
+                <div class="_check fas fa-check"></div>
+            </div>
+        </div>
+
+        <!--FORMULARIO-->
+        <div class="_form-principal">
+            <form class="_form" id="formulario">
+                <!--Step 1-->
+                <div class="_page _movPag">
+                    <h4>Tipo de anuncio</h4>
+                    <div class="_field">
+                        <div class="_form-element" id="group-tipopublicacion">
+                            <label for="tipopublicacion" class="_field-name">Tipo de publicación<span style="color: red">*</span></label>
+                            <div class="_group-input">
+
+                                <select name="tipopublicacion" class="_input _form-input" id="TipoPublicacion" ng-model="Formulario.TipoPublicacion">
+                                    <option value="Criadero">Criadero</option>
+                                    <option value="Servicios">Servicios</option>
+                                </select>
+
+                                <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                                <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                            </div>
+                            <p class="_form-info">El campo no puede contener símbolos ni acentos</p>
+                        </div>
+
+                        <!--Se muestra select con la categoría o con la raza dependiendo de la elección anterior-->
+                        <label id="CategoriaLabel" for="categoria" class="_field-name _ocultar">Categoría</label>
+                        <select class="_input _form-input _ocultar" id="CategoriaInput" ng-model="Formulario.Categoria">
+                            <option value="EsteticayBano">Estética y baño para mascotas</option>
+                            <option value="ComidaySuplementos">Comida y suplementos alimenticios</option>
+                            <option value="Accesorios">Accesorios para mascotas</option>
+                            <option value="PensionyCuidado">Pensión y cuidado de mascotas</option>
+                            <option value="EntrenadoresyEspecialistas">Entrenadores y especialistas en conducta animal</option>
+                            <option value="VeterinariasyClinicas">Veterinarias y clinicas para mascotas</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+
+
+                        <label id="RazaLabel" for="raza" class="_field-name _ocultar">Raza</label>
+                        <select class="_form-input _ocultar" id="_typeRazas" name="raza" ng-model="Formulario.Raza">
+                        </select>
+
+                        <!--Se muestra select con la categoría o con la raza dependiendo de la elección anterior-->
+
+                        <div class="_form-element" id="group-principal">
+                            <label for="principal" class="_field-name">Servicio Principal<span style="color: red">*</span></label>
+                            <div class="_group-input">
+                                <input type="text" class="_input _form-input" name="principal" id="_type" placeholder="Servicio principal" ng-model="Formulario.Principal" />
+                                <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                                <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                            </div>
+                            <p class="_form-info">El campo no puede contener símbolos ni acentos</p>
+                        </div>
+
+                        @*<label for="secundario" class="_field-name">Servicio Secundario</label>
+                        <input type="text" class="_input _form-input" id="_type" placeholder="Servicio secundario" ng-model="Formulario.Secundario" />*@
+
+                    </div>
+                    <br />
+                    <br />
+                    <div class="_sigPag">
+                        <button class="_btn">Siguiente</button>
+                    </div>
+                </div>
+                <!--Step 2-->
+                <div class="_page">
+                    <h4>Descripción del anuncio</h4>
+                    <div class="_field">
+
+                        <div for="titulonegocio" class="_form-element" id="group-titulonegocio">
+                            <label class="_field-name">Título del negocio<span style="color: red">*</span></label>
+                            <div class="_group-input">
+                                <input type="text" class="_input _form-input" name="titulonegocio" id="_type" placeholder="Mi negocio" ng-model="Formulario.TituloNegocio" />
+                                <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                                <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                            </div>
+                            <p class="_form-info">El campo sólo debe contener letras</p>
+                        </div>
+
+                        <div for="description" class="_form-element" id="group-descripcion">
+                            <label class="_field-name">Descripción<span style="color: red">*</span></label>
+                            <div class="_group-input">
+                                <input type="text" class="_input _form-input" name="descripcion" id="_type" placeholder="Descripción completa del servicio" ng-model="Formulario.Descripcion" />
+                                <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                                <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                            </div>
+                            <p class="_form-info">El campo no admite carácteres especiales</p>
+                        </div>
+
+                        <div for="estado" class="_form-element" id="group-estado">
+                            <label class="_field-name">Estado<span style="color: red">*</span></label>
+                            <div class="_group-input">
+                                @*<input type="text" class="_input _form-input" name="estado" id="_type" placeholder="Estado" ng-model="Formulario.Estado" />*@
+                                <select name="estado" class="_input _form-input" id="_typeEstado" @*onchange="cambia_municipio()"*@ ng-change="BuscarMunicipios(Formulario.Estado)" ng-model="Formulario.Estado">
+                                    <option value="0">Seleccione...</option>
+                                    <option value="1">AGUASCALIENTES</option>
+                                    <option value="2">BAJA CALIFORNIA</option>
+                                    <option value="3">BAJA CALIFORNIA SUR</option>
+                                    <option value="4">CAMPECHE</option>
+                                    <option value="5">COAHUILA DE ZARAGOZA</option>
+                                    <option value="6">COLIMA</option>
+                                    <option value="7">CHIAPAS</option>
+                                    <option value="8">CHIHUAHUA</option>
+                                    <option value="9">CIUDAD DE MEXICO</option>
+                                    <option value="10">DURANGO</option>
+                                    <option value="11">GUANAJUATO</option>
+                                    <option value="12">GUERRERO</option>
+                                    <option value="13">HIDALGO</option>
+                                    <option value="14">JALISCO</option>
+                                    <option value="15">MEXICO</option>
+                                    <option value="16">MICHOACAN DE OCAMPO</option>
+                                    <option value="17">MORELOS</option>
+                                    <option value="18">NAYARIT</option>
+                                    <option value="19">NUEVO LEON</option>
+                                    <option value="20">OAXACA</option>
+                                    <option value="21">PUEBLA</option>
+                                    <option value="22">QUERETARO</option>
+                                    <option value="23">QUINTANA ROO</option>
+                                    <option value="24">SAN LUIS POTOSI</option>
+                                    <option value="25">SINALOA</option>
+                                    <option value="26">SONORA</option>
+                                    <option value="27">TABASCO</option>
+                                    <option value="28">TAMAULIPAS</option>
+                                    <option value="29">TLAXCALA</option>
+                                    <option value="30">VERACRUZ DE IGNACIO DE LA LLAVE</option>
+                                    <option value="31">YUCATAN</option>
+                                    <option value="32">ZACATECAS</option>
+                                </select>
+                                <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                                <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                            </div>
+                            <p class="_form-info">El campo sólo debe contener letras</p>
+                        </div>
+
+                        <div for="municipio" class="_form-element" id="group-municipio">
+                            <label class="_field-name">Municipio<span style="color: red">*</span></label>
+                            <div class="_group-input">
+                                @*<input type="text" class="_input _form-input" name="municipio" id="_type" placeholder="Municipio" ng-model="Formulario.Municipio" />*@
+                                <select name="municipio" class="_input _form-input" id="_typeMunicipios">
+                                    <option value="-"></option>
+                                </select>
+                                <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                                <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                            </div>
+                            <p class="_form-info">El campo sólo debe contener letras</p>
+                        </div>
+
+
+                    </div>
+                    <br />
+                    <br />
+                    <div class="_sigPag">
+                        <button class="_btn _volver-pag1">Atrás</button>
+                        <button class="_btn _adelante-pag3">Adelante</button>
+                    </div>
+
+                </div>
+                <!--Step 3-->
+                <div class="_page">
+                    <h4>Datos de contacto</h4>
+                    <div class="_field">
+
+                        <div for="correocontacto" class="_form-element" id="group-correocontacto">
+                            <label class="_field-name">Correo de contacto<span style="color: red">*</span></label>
+                            <div class="_group-input">
+                                <input type="text" class="_input _form-input" name="correocontacto" id="_type" placeholder="Mi correo" ng-model="Formulario.Correo" />
+                                <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                                <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                            </div>
+                            <p class="_form-info">Debe ingresar un correo válido</p>
+                        </div>
+
+                        <div for="direccion" class="_form-element" id="group-direccion">
+                            <label class="_field-name">Dirección<span style="color: red">*</span></label>
+                            <div class="_group-input">
+                                <input type="text" class="_input _form-input" name="direccion" id="_type" placeholder="Mi dirección" ng-model="Formulario.Direccion" />
+                                <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                                <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                            </div>
+                            <p class="_form-info">El campo sólo como carácteres especiales: puntos, comas y #</p>
+                        </div>
+
+                        <div for="telefono" class="_form-element" id="group-telefono">
+                            <label class="_field-name">Teléfono<span style="color: red">*</span></label>
+                            <div class="_group-input">
+                                <input type="text" class="_input _form-input" name="telefono" id="_type" placeholder="Mi teléfono" ng-model="Formulario.Telefono" />
+                                <img class="_form-validacion" src="~/Content/Images/incorrecto.png" />
+                                <img class="_form-validacion2" src="~/Content/Images/comprobar.png" />
+                            </div>
+                            <p class="_form-info">El campo sólo admite números</p>
+                        </div>
+
+                        <label for="facebook" class="_field-name">Facebook</label>
+                        <input type="text" class="_input _form-input" id="_type" placeholder="Link a mi perfil" ng-model="Formulario.Facebook" />
+                        <label for="instagram" class="_field-name">Instagram</label>
+                        <input type="text" class="_input _form-input" id="_type" placeholder="Link a mi perfil" ng-model="Formulario.Instagram" />
+                        <label for="youtube" class="_field-name">Ubicación (Google maps)</label>
+                        <input type="text" class="_input _form-input" id="_type" placeholder="Copiar hipervínculo con ubicación" ng-model="Formulario.Youtube" />
+                        <label for="twitter" class="_field-name">Twitter</label>
+                        <input type="text" class="_input _form-input" id="_type" placeholder="Link a mi perfil" ng-model="Formulario.Twitter" />
+                        <label for="imagen" class="_field-name">Imagen</label>
+                        <div>
+                            <input type="file" id="fileInput" accept="image/x-png,image/gif,image/jpeg">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="_form-warning" id="form-warning">
+                        <p><img src="~/Content/Images/warningnegro.png" /><b>Error:</b>Por favor llene el formulario correctamente</p>
+                    </div>
+                    <div class="_sigPag">
+                        <button class="_btn _volver-pag2">Atrás</button>
+                        <button class="_btn _fin" ng-click="AgregarAnuncio(Formulario)">Finalizar</button>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!--TOAST EXITO EN REGISTRO DEL ANUNCIO-->
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toastExitoRegistroPrimerPerro toast _toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="~/Content/Images/comprobar.png" class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Éxito en el registro de tu mascota</strong>
+            <small>Notificación</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Hemos registrado exitosamente los datos de tu mascota, vuelve a ingresar para visualizarlos.
+            Recuerda que sólo tienes una máscota gratis.
+        </div>
+    </div>
+
+    <!--TOAST ERROR EN REGISTRO DEL ANUNCIO-->
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toastFracasoRegistroPrimerPerro toast _toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="~/Content/Images/incorrecto.png" class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Error en el registro de tu mascota</strong>
+            <small>Notificación</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Ocurrió un error, vuelve a intentarlo más tarde o contacta al administrador de sistemas.
+        </div>
+    </div>
+
+
+
+    <script src="~/Scripts/Anuncios/FormularioAnuncios.js"></script>
+</body> 
+</html>
+

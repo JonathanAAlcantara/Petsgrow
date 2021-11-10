@@ -1,0 +1,114 @@
+﻿body {
+    height: 80%;
+}
+
+._titulo {
+    top: 2em;
+    font-family: 'Baloo Chettan 2', cursive;
+    position: relative;
+    display: grid;
+    justify-content: center;
+}
+
+._titulo h2{
+    display: grid;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+._titulo label{
+    position: relative;
+    left: 25%;
+    margin-bottom: 2px;
+}
+
+._font400 {
+    font-family: 'Baloo Chettan 2', cursive;
+    font-weight: 400;
+}
+
+._btnLogin {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    position: relative;
+    width: 80%;
+    left: 10%;
+}
+
+._size-img-navbar {
+    width: 300px;
+}
+
+    ._btnLogin:hover {
+        background-color: #FFD345;
+        border-color: #FFD345;
+    }
+
+._reestablecer-input{
+    width: 60%;
+    left: 20%;
+    position: relative;
+}
+
+._cuerpo footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+._alert-success {
+    width: 60%;
+    left: 20%;
+    position: relative;
+    top: 1em;
+    border: 2px solid seagreen;
+    background-color: lightgreen;
+    color: seagreen;
+    font: 15px 'Baloo Chettan 2', cursive;
+    display: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+._alert-success-active{
+    display: block;
+}
+
+._alert-success p{
+    margin-bottom: 0px;
+}
+
+._alert-fail {
+    width: 60%;
+    left: 20%;
+    position: relative;
+    top: 1em;
+    border: 2px solid darkred;
+    background-color: palevioletred;
+    color: darkred;
+    font: 15px 'Baloo Chettan 2', cursive;
+    display: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+._alert-fail-active{
+    display: block;
+}
+
+._alert-fail p {
+    margin-bottom: 0px;
+}
+
+@media screen and (max-width: 450px){
+    ._titulo label {
+        display: inline-block;
+        width: 50%;
+        text-align: center;
+    }
+
+    ._size-img-navbar {
+        width: 170px;
+    }
+}

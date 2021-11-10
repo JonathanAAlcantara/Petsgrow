@@ -1,0 +1,294 @@
+﻿
+@{
+    ViewBag.Title = "Layout_Inicio";
+}
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="~/Content/Layout_Inicio_Grid.css" rel="stylesheet" />
+    <!--NORMALIZE-->
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+
+    <link rel="icon" type="image/png" href="~/Content/Images/Iso60.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+</head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand _size-img-navbar" href="@Url.Action("Inicio", "Inicio")">
+                <img src="~/Content/Images/Imago60.png" class="img-fluid" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="~/Content/Images/menuburger.png" />
+            </button>
+            <div class="collapse navbar-collapse _navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    @*<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle _font _link-hover" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Suscripcion
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item _font _link-hover" href="@Url.Action("Mimascota", "Membresias")">Mi mascota</a>
+                            <a class="dropdown-item _font _link-hover" href="@Url.Action("Micriadero", "Membresias")">Mi criadero</a>
+                            <a class="dropdown-item _font _link-hover" href="@Url.Action("Micriadero", "Membresias")">Mi criadero Pro</a>
+                        </div>
+                    </li>*@
+                    <li class="nav-item">
+                        <a class="nav-link _font _link-hover" href="@Url.Action("Criaderos", "Membresias")">Zona Pet Friendly</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link _font _link-hover" href="@Url.Action("Alianzas", "Membresias")">Alianzas</a>
+                    </li>
+                    @*<li class="nav-item">
+                        <a class="nav-link _font _link-hover" href="@Url.Action("Inicio", "Inicio")">Instadog</a>
+                    </li>*@
+                    <a href="@Url.Action("Login", "Inicio")" class="btn btn-success _btn _font">Ingresar</a>
+                </ul>
+            </div>
+        </nav>
+
+
+        <div>
+            @RenderBody()
+        </div>
+
+        <footer>
+            <div class="_footer-copyright">
+                &copy; @DateTime.Now.Year - Petsgrow
+                <a style="cursor:pointer" data-toggle="modal" data-target="#staticBackdrop"> - Política de privacidad, términos y condiciones</a>
+            </div>
+            <div class="_footer-social">
+                <ul class="_footer-icons">
+                    <li class="_footer-social-icon">
+                        <img src="~/Content/Images/facebook_blanco.png" id="facebook" />
+                    </li>
+                    <li class="_footer-social-icon">
+                        <img src="~/Content/Images/instagram_blanco.png" id="instagram" />
+                    </li>
+                    <li class="_footer-social-icon">
+                        <img src="~/Content/Images/twitter_blanco.png" id="twitter" />
+                    </li>
+                </ul>
+            </div>
+            <div class="_contact-container">
+                <p>
+                    <span>Correo: petsgrowmx@gmail.com</span> <br />
+                    <span>Teléfono: 722-659 7833</span>
+                </p>
+            </div>
+            <!--Modal para términos y condiciones-->
+            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header _modal-header-color">
+                            <h5 class="modal-title" id="staticBackdropLabel">Política de privacidad, términos y condiciones</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body _modal-overflow">
+                            <h2>POLÍTICA DE PRIVACIDAD</h2>
+                            <h3>1.	RESPONSABLE </h3>
+                            <p>
+                                Felipe Alberto Arcos Casarrubias, con --, que representa a Pets Grow! y que en los sucesivo se denominará www.petsgrowmx.com es responsable de recabar sus datos personales, del uso que se le dé a los mismos y de su protección en los casos en los que se recaben a través de su página web o de manera física por cualquiera de sus empleados, socios, asesores o asociados.
+                            </p>
+                            <h3>2.	FINALIDAD </h3>
+                            <p>
+                                Su información personal será utilizada para proveer los servicios y productos que ha solicitado a través de nuestra plataforma, de conformidad con los términos y condiciones publicados en la misma o cualquiera de los canales comerciales y publicitarios utilizados por la empresa, para informarle sobre cambios en los mismos y evaluar la calidad del servicio que le brindamos.
+                            </p>
+                            <h3>3.	DATOS A RECABAR</h3>
+                            <p>
+                                Para las finalidades antes mencionadas, requerimos obtener los siguientes datos personales:
+                            </p>
+                            <p>
+                                <ul>
+                                    <li>Nombre completo</li>
+                                    <li>Correo electrónico</li>
+                                    <li>Domicilio</li>
+                                    <li>Teléfono</li>
+                                </ul>
+                            </p>
+                            <h3>4.	DATOS PERSONALES SENSIBLES</h3>
+                            <p>
+                                De conformidad con la legislación mexicana vigente, se conocen como “Datos Personales Sensibles” a “aquellos que puedan revelar aspectos como origen racial o étnico, estado de salud presente y futuro, información genética, creencias religiosas, filosóficas y/o morales, afiliación sindical, opiniones políticas, preferencia sexual”.
+                            </p>
+                            <p>
+                                En caso de que www.petsgrowmx.com  llegue a requerir Datos Personales Sensibles de los usuarios, estos deberán ser proporcionados bajo su consentimiento expreso.
+                            </p>
+                            <h3>5.	MANTENIMIENTO DE LA INFORMACIÓN</h3>
+                            <p>
+                                Si usted desea optar por restringir el uso y/o divulgación de su información personal efectuado por nosotros, salvo por lo expresamente establecido en esta Política de Privacidad y/o para procesar cualquier orden de compra, generalmente tendrá dicha opción cuando envía por primera vez su información personal a través de los Sitios web de “www.petsgrowmx.com”. Simplemente indique su deseo de restringir el uso, seleccionando o no el recuadro proveído a tal efecto. Si usted desea rectificar o eliminar cualquier información personal que haya proporcionado previamente, sin restringir el uso, por favor envíenos un mensaje a petsgrowmx@gmail.com
+                            </p>
+                            <h3>6.	SEGURIDAD</h3>
+                            <p>
+                                El sitio web de “www.petsgrowmx.com” y sus oficinas utilizan medidas de seguridad físicas, electrónicas y administrativas para evitar la pérdida, el uso indebido o la alteración de la información bajo nuestro control.
+                            </p>
+                            <p>
+                                Asimismo, Utilizamos conexiones Secure Socket Layer (“SSL”) con codificación de 128 bits para ciertas transacciones y datos confidenciales. Al utilizar un navegador seguro, toda la información que usted proporcione es recibida a través de Internet de forma codificada. Todas las páginas web seguras utilizan un certificado electrónico emitido por una autoridad de certificadora. Todas las páginas web seguras tienen un “certificado de sitio web”. Para ver este certificado, haga clic en la imagen del candado cerrado o de la llave en la barra inferior de la ventana de su navegador.
+                            </p>
+                            <p>
+                                Desafortunadamente, ninguna transmisión de datos en línea o cualquier red inalámbrica puede ser 100% segura. Consecuentemente, en tanto que nos esforzamos en proteger su información personal, no podemos asegurar o garantizar la seguridad de la información que usted transmite, lo cual realiza bajo propio riesgo. Usted puede reportarnos cualquier abuso de la red y cualquier riesgo de seguridad enviando un mensaje a petsgrowmx@gmail.com
+                            </p>
+                            <p>
+                                Asimismo, en caso de pérdida, destrucción, robo o mal uso de dicha información usted será informado de los sucesos y las circunstancias en las que ocurrió.
+                            </p>
+                            <h3>7.	DERECHOS ARCO Y MECANISMOS DE EJERCICIO</h3>
+                            <p>
+                                Los usuarios podrán solicitar el ejercicio de sus derechos a:
+                            </p>
+                            <p>
+                                <ul>
+                                    <li>Acceder a sus Datos Personales;</li>
+                                    <li>Rectificar sus Datos Personales cuando sean inexactos o incompletos;</li>
+                                    <li>Cancelar sus Datos Personales;</li>
+                                    <li>Oponerse por causa legítima al Tratamiento de sus Datos Personales, y/o</li>
+                                    <li>Revocar su consentimiento para el Tratamiento de sus Datos Personales en cualquier momento, a fin de que se deje de hacer uso de los mismos.</li>
+                                </ul>
+                            </p>
+                            <p>
+                                Sin embargo, es importante que tenga en cuenta que no en todos los casos podremos atender su solicitud para cancelar sus Datos Personales, oponerse al Tratamiento o revocar su consentimiento, ya que es posible que por alguna obligación legal requerimos seguir tratando sus Datos Personales. El usuario deberá considerar que, para ciertos fines, la revocación de su consentimiento implicará la suspensión del servicio o la conclusión de su relación con www.petsgrowmx.com
+                            </p>
+                            <p>
+                                El ejercicio de los derechos de Acceso, Rectificación, Cancelación u Oposición de Datos Personales y Revocación del consentimiento que realicen los usuarios deberá realizarse previa solicitud a www.petsgrowmx.com y contener al menos lo siguiente:
+                            </p>
+                            <p>
+                                <ul>
+                                    <li>El nombre del titular, domicilio y correo electrónico para comunicarle la respuesta a su solicitud;</li>
+                                    <li>Los documentos que acrediten la identidad o, en su caso, la representación legal del titular;</li>
+                                    <li>La descripción clara y precisa de los Datos Personales respecto de los que se busca ejercer alguno de los derechos antes mencionados (en el caso de rectificación se deberá indicar las modificaciones a realizar y aportar la documentación que sustente su petición);</li>
+                                    <li>Cualquier otro elemento o documento que facilite la localización de los Datos Personales.</li>
+                                </ul>
+                            </p>
+                            <p>
+                                Para efecto de lo anterior www.petsgrowmx.com pone a disposición de los usuarios el siguiente correo electrónico: petsgrowmx@gmail.com
+                            </p>
+                            <p>
+                                www.petsgrowmx.com dará respuesta a la solicitud de los usuarios en un plazo no mayor a 20 días hábiles contados a partir de la fecha en que reciba la petición correspondiente, a través del correo electrónico que haya sido proporcionado para tal efecto.
+                            </p>
+                            <p>
+                                El ejercicio por parte de los usuarios de los derechos antes mencionados deberá sujetarse a las leyes y reglamentos aplicables vigentes en México.
+                            </p>
+                            <h3>8.	TRANSFERENCIA DE DATOS</h3>
+                            <p>
+                                www.petsgrowmx.com podrá, sin consentimiento del titular, revelar, divulgar y/o transferir dentro y fuera del país los Datos Personales proporcionados por los usuarios, a sus empresas filiales, subsidiarias y/o relacionadas, así como para dar cumplimiento con disposiciones legales que así lo requieran, o bien cuando sea solicitado por autoridades competentes.
+                            </p>
+                            <p>
+                                De igual forma podrá revelar, divulgar y/o transferir dentro y fuera del país los Datos Personales a proveedores, patrocinadores, publicistas, contratistas y/o socios para fines comerciales, como proporcionar datos estadísticos a anunciantes potenciales, enviar publicidad a los usuarios de acuerdo a sus intereses específicos y conducir investigaciones de mercado. Los terceros que reciban la información relacionada con los Datos Personales de los usuarios están obligados a cumplir con lo previsto en este Aviso de Privacidad, así como con los Términos y Condiciones del Sitio y de la legislación aplicable en México.
+                            </p>
+                            <p>
+                                El titular de los Datos Personales podrá otorgar su consentimiento a la transferencia de sus Datos Personales en los términos descritos en el presente Aviso al momento de registrarse al Sitio.
+                            </p>
+                            <h3>9.	COOKIES, DIRECCIÓN DE IP, BEACONS Y ANÁLISIS DE TRÁFICO</h3>
+                            <p>
+                                Su navegador incluye una función denominada “cookies”. Si está activada, las cookies pueden almacenar pequeñas cantidades de datos en su equipo sobre su visita a nuestro sitio web. Sin embargo, las cookies no nos proporcionan información personal a menos que usted nos proporcione información adicional. Las cookies nos ayudan a rastrear qué elementos son de su agrado y qué contenido pudo haber visto en sus visitas anteriores. Al visitar nuevamente nuestro sitio, las cookies nos pueden permitir personalizar nuestro contenido de acuerdo con sus preferencias. Podemos utilizar las cookies para:
+                            </p>
+                            <p>
+                                <ul>
+                                    <li>Mantener un registro de visitas subsiguientes a nuestro sitio web;</li>
+                                    <li>Acumular y reportar información anónima, agregada y estadística sobre el uso del sitio web;</li>
+                                    <li>Ofrecer contenido específico de acuerdo con sus intereses o registro de visitas anteriores;</li>
+                                    <li>Almacenar su contraseña para evitar ingresarla en cada visita a nuestros sitios web.</li>
+                                </ul>
+                            </p>
+                            <p>
+                                Usted también puede desactivar las cookies. Modificando las preferencias de su navegador usted puede aceptar o rechazar todas las cookies o solicitar una notificación cuando una cookie quede colocada.
+                            </p>
+                            <p>
+                                www.petsgrowmx.com no almacena o registra las direcciones de Protocolo de Internet (“IP”) de los visitantes de nuestro sitio web con fines publicitarios, pero sí podríamos almacenar direcciones IP en las bitácoras de servidores para fines de mantenimiento del sistema o para almacenar la ubicación de la fuente cuando alguien proporciona información personal. Una dirección IP es un número asignado a su equipo cada vez que ingresa a Internet. Un Proveedor de Servicio de Internet (“ISP”) generalmente asigna direcciones IP aleatorias al establecer la conexión. En el caso de redes de área local (“LAN”), protocolos de Internet de Banda Ancha (“DSL”) o usuarios de módem por cable, puede asignarse una dirección IP permanente a un equipo específico. Nosotros no podemos determinar su identidad únicamente por su dirección IP. Sin embargo, su dirección IP puede revelar el área geográfica desde la cual usted se conecta a Internet o qué ISP utiliza. Finalmente, otros sitios web que usted visita tienen direcciones IP y nosotros podemos recopilar las direcciones IP de dichos sitios y sus páginas, pero estos sitios IP nunca se asocian con usuarios de Internet.
+                            </p>
+                            <p>
+                                Nuestro sitio web tiene imágenes electrónicas (llamadas “pixeles”, “archivos GIF transparentes” o “web beacons”) que nos permiten a nosotros y a nuestros socios publicitarios, ver y acceder a cookies. En general, cualquier imagen electrónica vista como parte de una página web, incluyendo barras publicitarias, pueden actuar como web beacons. Los web beacons son de tamaño pequeño para evitar usar demasiado espacio en la pantalla de la computadora que puede usarse mejor para presentar contenido de utilidad. En algunos casos, estos archivos los proporciona nuestro socio de administración en línea. Estos archivos permiten a nuestro socio de administración en línea reconocer cookies específicos en su navegador, permitiéndonos saber qué anuncios atraen a los usuarios a nuestro sitio web. Nosotros u otro anunciante que trabaje con nuestro socio de administración en línea colocamos cookies. Nosotros también podríamos incluir web beacons en boletines con formato HTML que contengan gráficas que enviamos a nuestros subscriptores para contabilizar el número de boletines que han sido abiertos y leídos. También podríamos utilizar web beacons y cookies para monitorear su comportamiento y sus intereses en línea dentro de nuestro sitio web. La información recabada y compartida por medio de cookies y web beacons es anónima y no proporciona información personal. Esta información no contiene su nombre, dirección postal, número telefónico o dirección de correo electrónico.
+                            </p>
+                            <h3>10.	CAMBIOS EN EL AVISO</h3>
+                            <p>
+                                www.petsgrowmx.com se reserva el derecho de modificar en cualquier momento el contenido del presente Aviso de Privacidad. Cualquier cambio en el Aviso de Privacidad le será informado a sus usuarios a través del Sitio. Una vez que se publique el Aviso de Privacidad en el Sitio entrará en vigor automáticamente.
+                            </p>
+                            <p>
+                                La fecha de última actualización del presente aviso es el 10 de noviembre de 2020.
+                            </p>
+                            <h3>11.	DATOS DE CONTACTO</h3>
+                            <p>
+                                En caso de que usted tenga cualquier duda relativa a nuestro aviso de privacidad o política de privacidad usted puede comunicarse con nuestro departamento legal con el L. en D. Diego Alberto López Guerrero Echevarría, con domicilio en Arcadio Henkel #213 Col. Morelos 1ra Sección, C.p. 50120, Toluca, Estado de México, México,  al correo electrónico: diego.lopez@nookit.mx
+                            </p>
+                            <br />
+                            <h2>TÉRMINOS Y CONDICIONES</h2>
+                            <p>
+                                Pets Grow! en adelante www.petsgrowmx.com le ofrece ciertos servicios y productos al visitar, utilizar y realizar cualquier operación en nuestra página web, en adelante “NUESTRA PAGINA”, el presente documento establece los “términos y condiciones” a los cuales se someten todos los usuarios, y/o personas, en adelante “USUARIOS” que de cualquier forma hagan uso y/o utilicen nuestra página; de conformidad con el artículo 1803 del Código de Civil Federal; al momento de hacer uso de cualquiera de los Servicios, se considerará una absoluta y expresa aceptación de los términos y condiciones de uso aquí establecidos, asimismo acuerdan voluntariamente por ese simple hecho y se obligan a sujetarse en todos sus términos y condiciones, así como a cualquier otra disposición, requerimiento, lineamiento o similar, que sea de tiempo en tiempo establecida en nuestra página, directamente o a través de los vínculos que muestren dicha información.
+                            </p>
+                            <h3>PRODUCTOS Y SERVICIOS</h3>
+                            <p>
+                                www.petsgrowmx.com intenta proporcionar a los visitantes la facilidad de conocer de una forma general, acercándose a lo más exacto posible a la descripción de todos los productos desplegados en nuestra página. No obstante lo anterior, www.petsgrowmx.com no garantiza que la descripción de cualquier producto sea precisa, completa, detallada, vigente o libre de errores. En todo caso la descripción final del producto objeto de cualquier Oferta de Compra será la incluida en la Confirmación de Pedido correspondiente. El Cliente será responsable de verificar que el producto cumpla con la descripción señalada en la Orden de Compra y en la Confirmación de Pedido correspondiente en el momento de la entrega.
+                            </p>
+                            <p>
+                                La aparición de productos en nuestra página, no implica responsabilidad alguna de su disponibilidad, existencia, características particulares o la satisfacción de cualquier otro interés de nuestros usuarios. La información de nuestra página está enfocada para el mercado de los Estado Unidos Mexicanos, para usuarios de otras partes del mundo deberá ser considerada como un sitio de visita solamente.
+                            </p>
+                            <p>
+                                En el procedimiento de compra o contratación de los productos todo “usuario” deberá estar previamente registrado en www.petsgrowmx.com y tener su clave de usuario, proporcionando correo electrónico así como información personal como su nombre completo, deberá comprobar ser propietario de los mismos y declara bajo protesta de decir verdad, que los mismos corresponden a información veraz y vigente.
+                            </p>
+                            <p>
+                                Nada en nuestra página constituye ni constituirá una prescripción, receta, sugerencia, instrucción, consejo o asesoría médica, clínica, farmacéutica o sanitaria dirigida a nuestros usuarios. En nuestra página no se prestan servicios médicos, de enfermería ni de cualquier otra especialidad que deban ser administrados personalmente por un profesional autorizado. El usuario entiende y conviene que www.petsgrowmx.com no será responsable de cualquier daño o perjuicio que sufra con motivo de la compra o uso de cualquier producto publicado en nuestra página, y en este acto libera a www.petsgrowmx.com de cualquier obligación o responsabilidad que pueda ocurrir.
+                            </p>
+                            <h3>PRECIOS Y PAGOS</h3>
+                            <p>
+                                El precio que aparece para cada uno de los productos del sitio, representa el precio de venta al público aprobado en términos de la legislación aplicable y/o sugerida por el fabricante o proveedor correspondiente, incluyendo cuando sea aplicable, los impuestos asociados con la venta. Proporcione la forma de pago: Tarjeta de Crédito, sujeto a proceso de seguridad; Paypal únicamente si cuenta con su tarjeta verificada; deposito en efectivo, imprime tu confirmación de pedido y responde mandando una fotografía del comprobante de tu pago.
+                            </p>
+                            <p>
+                                A pesar de nuestros mejores esfuerzos, por causas atribuibles a nuestros proveedores de productos, de servicios de logística, por dificultades técnicas en la actualización de nuestra página y el tiempo que naturalmente puede llevarnos la prontitud en la revisión y actualización en nuestro sistema de precios, o errores de inventario, algunos de los productos desplegados en nuestra página podrían aparecer con un precio erróneo o no actualizado.
+                            </p>
+                            <h3>FACTURACION</h3>
+                            <p>
+                                El usuario podrá obtener una factura con relación a cualquier compra realizada en nuestra página en términos de la legislación fiscal vigente aplicable, mediante la inclusión de los datos del recibo de compra correspondiente en nuestra página www.petsgrowmx.com. La facturación electrónica solo podrá realizarse dentro del mes en el que se haya realizado la compra.
+                            </p>
+                            <h3>GARANTIAS</h3>
+                            <p>
+                                Los productos ofrecidos por www.petsgrowmx.com tendrán como fecha de vencimiento el último minuto de la fecha de entrega; sin embargo, los usuarios tendrán expedito su derecho para reclamar la garantía al fabricante del producto.
+                            </p>
+                            <h3>ENTREGA</h3>
+                            <p>
+                                www.petsgrowmx.com realizará de la mejor manera posible la entrega de los productos dentro de un lapso de 3 a 5 días hábiles a partir de la Confirmación de Pedido. El Cliente deberá verificar que el bien y/o producto sea el mismo que el descrito en la Confirmación de Pedido y en la Oferta de Compra.
+                            </p>
+                            <h3>CESE DEL SERVICIO</h3>
+                            <p>
+                                Para que sea procedente el cambio del producto o devolución de dinero se requiere que el producto objeto de la obligación contractual haya sido entregado defectuoso, no haya sido el que solicito el Usuario o bien no es apto para el consumo. Asimismo, para que procedan los cambios de producto o la devolución de dinero, se requiere que hayan sido solicitados dentro del plazo de 24 horas a partir de la entrega del producto; por políticas de la empresa las devoluciones serán procesadas en 72hrs hábiles tras haber sido aceptada la cancelación o devolución de un producto y que se encuentre en condiciones de cambio.
+                            </p>
+                            <p>
+                                Por ningún motivo se aceptarán cambio por razones diferentes a las mencionadas en el párrafo anterior o por las expresamente mencionadas en la ley, no procederán cambios por razones de gustos, apreciaciones o cambios de decisión del usuario.
+                            </p>
+                            <h3>RESPONSABILIDAD</h3>
+                            <p>
+                                www.petsgrowmx.com no es responsable por daños ocasionados por virus que puedan infectar el equipo de cómputo u otra propiedad del usuario debido al acceso en forma directa, o enviado a través de un vínculo o link de www.petsgrowmx.com por lo tanto no asume ninguna responsabilidad por el funcionamiento o cualesquiera daños y/o perjuicios que el Usuario estime puedan derivarse de la interacción de nuestra página con su equipo de cómputo, ni acepta ninguna responsabilidad por cualquier daño o perjuicio de elementos que puedan ofender o considerarse lesivos por el Usuario, ni por cualquier otro elemento que pudiera ser introducido por cualquier tercero violando los controles que tenemos en nuestra página.
+                            </p>
+                            <p>
+                                www.petsgrowmx.com no garantiza la continuidad total o parcial de nuestra página o las secciones que lo integran. www.petsgrowmx.com se excluye de responsabilidad por cualquier daño o perjuicio derivado de la falta de continuidad o disponibilidad de conexión en nuestra página, por lo que no asume ninguna responsabilidad por cualquier daño o perjuicio derivado de: I) El uso inadecuado por parte de los visitantes en nuestra página. II) La violación o afectación de cualquier derecho de propiedad industrial o intelectual, secreto industrial, derechos de la personalidad, o cualquier otro derecho de terceros, derivado de la difusión, explotación o almacenamiento de cualquier elemento de nuestra página que se realice por los visitantes del mismo. III) La comisión de actos de competencia o publicidad desleal por parte de cualquier tercero que hubiera obtenido elementos de nuestra página. IV) La falta de precisión, pertinencia, detalle del contenido de nuestra página. V) Que nuestra página no satisfaga las expectativas del Usuario o la información o los productos no le sean útiles para cualquier fin específico deseado por el Usuario.
+                            </p>
+                            <p>
+                                www.petsgrowmx.com no se hace responsable por interceptaciones ilegales o violación de sus sistemas o base de datos por parte de personas no autorizadas. Ni por la indebida utilización de la información obtenida por esos medios.
+                            </p>
+                            <h3>LEGISLACION APLICABLE </h3>
+                            <p>
+                                Por todo lo relativo a la interpretación y cumplimiento de los presentes términos y condiciones, las partes se someten a las leyes aplicables a los tribunales competentes en la ciudad de México, renunciando a cualquier otra jurisdicción que pudiere corresponderle por razón de su domicilio presentes o futuros.
+                            </p>
+                            <h3>CAMBIO EN EL ACUERDO</h3>
+                            <p>
+                                www.petsgrowmx.com se reserva el derecho de modificar los presentes Términos y Condiciones en cualquier momento, sin previo aviso y cuando lo considere conveniente, sin necesidad de avisar al usuario, sin que ello de lugar ni derecho a ninguna reclamación o indemnización por parte del usuario. El usuario en este acto conviene que los Términos y Condiciones únicamente son aplicables para las operaciones que realice www.-- de momento en momento y conviene en sujetarse y quedar obligado por cualquier modificación a los presentes Términos y Condiciones para cualquier operación que realice con posterioridad a dichas modificaciones. No obstante, lo anterior, toda vez que reconocemos la confianza que nuestros Usuarios depositan en www.petsgrowmx.com, los cambios que pudiesen llegar a darse en los presentes términos y condiciones, es con la finalidad de ofrecer y brindar un mejor servicio.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Entendido</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+

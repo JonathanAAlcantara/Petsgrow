@@ -1,0 +1,287 @@
+﻿:root {
+    --primary-color: #2C2E2D;
+    --secondary-color: #F4AB43;
+    --third-color: #DBD9D5;
+    --fourth-color: #FFFFFF;
+    --z-back: -10;
+    --z-normal: 1;
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+    --scroll-bar: 13px;
+}
+
+body {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 5em 5fr 4rem;
+    grid-column-gap: 1em;
+    grid-row-gap: 0.2em;
+    
+}
+
+/*NAVBAR*/
+
+nav.navbar {
+    width: 100%;
+    background-color: var(--primary-color);
+    height: 5rem;
+    z-index: var(--z-modal);
+    grid-row: 1;
+    display: flex;
+    padding: 0.5rem 1rem;
+    align-items: center;
+}
+
+._font {
+    font-family: 'Baloo Chettan 2', cursive;
+    font-weight: 400;
+}
+
+._font2 {
+    font-family: 'Baloo Chettan 2', cursive;
+    font-weight: 400;
+    color: var(--fourth-color);
+}
+
+    ._font2:hover {
+        color: var(--fourth-color);
+    }
+
+
+._font3 {
+    font-family: 'Baloo Chettan 2', cursive;
+    font-weight: 400;
+    color: var(--secondary-color);
+}
+
+    ._font3:hover {
+        color: #FFD345;
+    }
+
+._link-hover:hover {
+    color: var(--secondary-color);
+}
+
+header {
+    background-color: dodgerblue;
+    grid-column: 1 / span 12;
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-collapse {
+        justify-content: flex-end;
+    }
+}
+
+/*NAVBAR*/
+
+._banner-section-prices{
+    grid-column: 3 / span 6;
+    grid-row: 2;
+}
+
+table {
+    
+    border-collapse: collapse;
+    border: 1px solid var(--primary-color);
+}
+
+thead th:nth-child(1) {
+    width: 30%;
+}
+
+thead th:nth-child(2) {
+    width: 14%;
+}
+
+thead th:nth-child(3) {
+    width: 14%;
+}
+
+thead th:nth-child(4) {
+    width: 14%;
+}
+
+thead th:nth-child(5) {
+    width: 14%;
+}
+
+thead th:nth-child(6) {
+    width: 14%;
+}
+
+th, td {
+    padding: 8px 12px;
+    border: 1px solid var(--primary-color);
+}
+
+thead {
+    text-align: center;
+    font-size: 14px;
+}
+
+tbody {
+    text-align: center;
+    font-size: 14px;
+}
+
+._punto {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+._banner-section-prices a {
+    background-color: var(--secondary-color) !important;
+    color: var(--fourth-color);
+    border-color: var(--secondary-color) !important;
+    height: 2em;
+    position: absolute;
+    display: grid;
+    justify-self: center;
+    bottom: 1.5em;
+}
+
+    ._banner-section-prices a:hover {
+        background-color: #FFD345 !important;
+        border-color: #FFD345 !important;
+    }
+
+._banner-section-prices h2{
+    text-align: center;
+}
+
+._font {
+    font-family: 'Baloo Chettan 2', cursive;
+    font-weight: 400;
+    color: var(--fourth-color);
+}
+
+._btn {
+    background-color: var(--secondary-color) !important;
+    color: var(--fourth-color);
+    border-color: var(--secondary-color) !important;
+}
+
+    ._btn:hover {
+        background-color: #FFD345 !important;
+        border-color: #FFD345 !important;
+    }
+
+._btn-naranja {
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+    ._btn-naranja:hover {
+        background-color: #FFD345;
+        border-color: #FFD345;
+    }
+
+/*FOOTER*/
+footer {
+    background-color: darkorange;
+    grid-row: 3;
+    background: #333;
+    color: white;
+    grid-column: 1 / span 12;
+}
+
+._footer-copyright {
+    width: 33%;
+    display: inline-block;
+    font-family: 'Baloo Chettan 2', cursive;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+._footer-social {
+    width: 33%;
+    display: inline-block;
+    position: relative;
+}
+
+._footer-icons {
+    list-style: none;
+    display: flex;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+._footer-social-icon {
+    padding: 0.5em;
+}
+
+._contact-container {
+    width: 20%;
+    height: 3em;
+    top: 6px;
+    left: 7em;
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+    ._contact-container span {
+        display: inline;
+        margin: 0px;
+        font-size: 15px;
+        font-family: 'Baloo Chettan 2', cursive;
+    }
+
+/*FOOTER*/
+
+@media screen and (max-width: 450px) {
+
+    ._banner-section-prices {
+        grid-column: 1 / span 6;
+        grid-row: 2;
+        left: 9px;
+        position: relative;
+    }
+
+    thead {
+        font-size: 10px;
+    }
+
+    tbody {
+        font-size: 10px;
+    }
+
+    ._borrar-col{
+        display: none;
+    }
+
+    ._footer-copyright {
+        font-size: 0.9em;
+    }
+
+    ._footer-icons {
+        padding: 0px;
+        width: 100%;
+    }
+
+    ._contact-container {
+        left: 0px;
+        top: -9px;
+    }
+
+        ._contact-container span {
+            font-size: 9px;
+        }
+
+    ._banner-section-prices h2 {
+        font-size: 1.5em;
+        position: relative;
+        left: 40%;
+    }
+}

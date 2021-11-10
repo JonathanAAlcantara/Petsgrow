@@ -1,0 +1,446 @@
+﻿body {
+    display: grid;
+    grid-template-rows: 5rem 6fr 4rem;
+    height: 100vh;
+    width: 100vw;
+    padding: 0px;
+}
+
+form{
+    width: 100%;
+}
+
+label{
+    margin-bottom: 0.1rem;
+}
+
+._stepper{
+    border-width: 0;
+    font-size: 14px;
+    display: block;
+    position: relative;
+    line-height: 1.42857143;
+}
+
+._size-img-navbar {
+    width: 300px;
+}
+
+._stepper-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    z-index: 1;
+    flex-direction: row;
+}
+
+._stepper-step{
+    flex: 1 0 auto;
+}
+
+._step-link{
+    margin: auto;
+    max-width: 10em;
+    flex-direction: column;
+    outline: 0;
+    text-decoration: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+    ._step-link:hover {
+        text-decoration-line: unset;
+        text-decoration: none;
+    }
+
+._step-indicator {
+    border-radius: 50%;
+    margin: 3px;
+    width: 28px;
+    height: 28px;
+    border-width: 1px;
+    border-style: solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    border-color: #ccc;
+    color: #656565;
+    background-color: #fff;
+    transition-property: background-color;
+    transition-duration: .4s;
+    transition-timing-function: ease-in-out;
+
+    /*transition-property: color,background-color,border-color;
+    transition-duration: .4s;
+    transition-timing-function: ease-in-out;*/
+
+}
+
+    ._step-indicator:hover {
+        background-color: #DEDEDE;
+    }
+
+._step-indicator-current {
+    border-color: #ff6358;
+    color: #fff;
+    background-color: #ff6358;
+}
+
+.stepIndicatorAnimate{
+    border-color: aqua;
+    background-color: aqua;
+}
+
+._step-label {
+    margin-top: 5px;
+    font-weight: 700;
+    color: #656565;
+    text-align: center;
+    max-width: 10em;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 1;
+}
+
+div._progress-bar {
+    width: 61%;
+    margin-left: 20%;
+    background-color: #ccc;
+    height: 2px;
+    top: 16px;
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    color: #656565;
+    border-color: rgba(0,0,0,0.8);
+    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
+    border-radius: 2px;
+    border-width: 0;
+    border-style: solid;
+    display: inline-grid;
+    vertical-align: middle;
+}
+
+._contenedor {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-template-rows: 1em 3fr 1em;
+    height: 100%;
+    background-image: url(/Content/Images/DogPrintsP.jpg);
+    background-size: cover;
+    background-position-y: -3rem;
+}
+
+._formulario{
+    margin-bottom: 1px;
+}
+
+._styleform {
+    background-color: rgba(44,46,45,0.7);
+}
+
+._form-element {
+    width: 100%;
+    color: var(--fourth-color);
+}
+
+._font400 {
+    font-family: 'Baloo Chettan 2', cursive;
+    font-weight: 400;
+}
+
+._btnLogin {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+    ._btnLogin:hover {
+        background-color: #FFD345;
+        border-color: #FFD345;
+    }
+
+._btn {
+    background-color: var(--primaryGreen);
+    color: var(--primaryGray);
+    border-color: var(--primaryGreen);
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: none;
+}
+
+    ._btn:hover {
+        background-color: #98DE16;
+        border-color: #98DE16;
+    }
+
+._form-login {
+    grid-column: 2;
+    grid-row: 2;
+    padding: .7em 4em;
+    margin: 5px;
+    display: inline-flex;
+    -webkit-box-shadow: 0px 1px 4px 0px #B5B5BA;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,.08), 0 3px 6px rgba(0,0,0,.08);
+    border: 1px solid rgba(20,53,80,0.14);
+}
+
+._form-input {
+    display: block;
+    width: 100%;
+    height: 1.7em;
+    padding: 3px 6px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: .3s ease all;
+}
+
+    input:hover {
+        -webkit-box-shadow: 0px 1px 4px 0px #B5B5BA;
+        box-shadow: 0 1px 2px 1px rgba(0,0,0,.08), 0 3px 6px rgba(0,0,0,.08);
+        border: 1px solid rgba(20,53,80,0.14);
+    }
+
+._form-input:focus {
+    -webkit-box-shadow: 0px 1px 4px 0px #B5B5BA;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,.08), 0 3px 6px rgba(0,0,0,.08);
+    border: 1px solid rgba(20,53,80,0.14);
+}
+
+
+input._form-input {
+    max-width: 100%;
+}
+
+._form-element {
+    font-size: .9em;
+    margin-bottom: 0;
+}
+
+._register {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+._form-control{
+    padding: 3px 6px;
+    height: 1.7em;
+}
+
+._toast {
+    grid-row: 2;
+    grid-column: 3;
+    height: 35%;
+}
+/*MODAL TEXTO LARGO CON SCROLL*/
+._modal-header-color {
+    background-color: #656565;
+}
+
+.modal-body p {
+    text-align: justify;
+    font-size: 13px;
+}
+
+._modal-overflow {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+/*MODAL TEXTO LARGO CON SCROLL*/
+
+/*VALIDACIÓN DEL FORMULARIO*/
+
+._form-info {
+    font-family: 'Baloo Chettan 2', cursive;
+    color: red;
+    font-size: 11px;
+    margin-bottom: 0px;
+    opacity: 0;
+}
+
+._form-info-activo {
+    opacity: 1;
+}
+
+._form-validacion {
+    position: absolute;
+    right: 5px;
+    bottom: 7px;
+    z-index: 100;
+    height: 11px;
+    width: 11px;
+    opacity: 0;
+}
+
+._form-validacion2 {
+    position: absolute;
+    right: 5px;
+    bottom: 7px;
+    z-index: 100;
+    height: 11px;
+    width: 11px;
+    opacity: 0;
+}
+
+._group-input {
+    position: relative;
+}
+
+._form-check {
+    position: relative;
+    display: block;
+    padding-left: 1.25rem;
+    line-height: 30px;
+}
+
+._form-warning {
+    background-color: rgba(219,15,15,0.5);
+    border: 1px solid rgba(219,15,15,0.5);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 2em;
+    line-height: 2em;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+._form-warning-active {
+    display: block
+}
+
+._form-warning p {
+    margin: 0;
+    line-height: 2em;
+}
+
+._check-label {
+    margin-bottom: 0;
+    display: inline-block;
+    font-family: 'Baloo Chettan 2', cursive;
+    color: white;
+    font-size: .9em;
+}
+
+._check-input {
+    position: absolute;
+    margin-top: 0.5rem;
+    margin-left: -1.25rem;
+    line-height: 30px;
+}
+
+._form-group-incorrecto ._field-name {
+    color: var(--warning);
+}
+
+._form-group-incorrecto ._form-validacion {
+    opacity: 1;
+}
+
+._form-group-correcto ._form-validacion2 {
+    opacity: 1;
+}
+
+._form-group-incorrecto ._form-input {
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(219,15,15,1);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(219,15,15,1);
+    box-shadow: 0px 0px 5px 1px rgba(219,15,15,1);
+    border: 1px solid rgba(219,15,15,1);
+}
+
+/*VALIDACIÓN DEL FORMULARIO*/
+
+@media screen and (max-width: 450px){
+    ._contenedor {
+        grid-template-columns: .4fr 4fr .4fr;
+        grid-template-rows: 4em 3fr 1.5em;
+        background-position-y: 0rem;
+        background-position-x: -19rem;
+    }
+
+    ._form-login {
+        padding: .7em 2.5em;
+        height: 85%;
+    }
+
+    ._check-label {
+        font-size: .8em;
+    }
+
+    ._btn {
+        margin-top: 1em;
+    }
+
+    ._size-img-navbar {
+        width: 170px;
+    }
+}
+
+/*SCREEN BETWEEN 450PX & 575PX*/
+@media screen and (min-width: 451px) and (max-width: 575px){
+
+    ._navbar-collapse {
+        background-color: var(--primary-color);
+    }
+
+    ._contenedor {
+        grid-template-columns: .5fr 2fr .5fr;
+    }
+
+    ._form-login {
+        height: 75%;
+        margin-top: 4em;
+    }
+
+    ._btn {
+        margin-top: 1em;
+    }
+
+    ._contenedor {
+        background-position-y: 0rem;
+    }
+}
+
+/*SCREEN BETWEEN 576PX & 768PX*/
+@media screen and (min-width: 576px) and (max-width: 768px){
+
+    ._navbar-collapse {
+        background-color: var(--primary-color);
+    }
+
+    ._contenedor {
+        grid-template-columns: .5fr 2fr .5fr;
+    }
+
+    ._form-login {
+        height: 75%;
+        margin-top: 4em;
+    }
+
+    ._btn {
+        margin-top: 1em;
+    }
+
+    ._contenedor {
+        background-position-y: 0rem;
+    }
+
+}
