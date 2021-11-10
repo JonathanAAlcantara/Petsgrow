@@ -1,0 +1,17 @@
+C:\Users\jalva\OneDrive\Documentos\Herramientas\bin\Debug\Herramientas.dll
+C:\Users\jalva\OneDrive\Documentos\Herramientas\bin\Debug\Herramientas.pdb
+C:\Users\jalva\OneDrive\Documentos\Herramientas\obj\Debug\5.Herramientas.csprojAssemblyReference.cache
+C:\Users\jalva\OneDrive\Documentos\Herramientas\obj\Debug\Herramientas.dll
+C:\Users\jalva\OneDrive\Documentos\Herramientas\obj\Debug\Herramientas.pdb
+C:\Users\jalva\OneDrive\Documentos\Herramientas\obj\Debug\5.Herramientas.csproj.CoreCompileInputs.cache
+Z:\Herramientas\bin\Debug\Herramientas.dll
+Z:\Herramientas\bin\Debug\Herramientas.pdb
+Z:\Herramientas\obj\Debug\5.Herramientas.csproj.CoreCompileInputs.cache
+Z:\Herramientas\obj\Debug\Herramientas.dll
+Z:\Herramientas\obj\Debug\Herramientas.pdb
+C:\Users\jalva\Documents\Herramientas\bin\Debug\Herramientas.dll
+C:\Users\jalva\Documents\Herramientas\bin\Debug\Herramientas.pdb
+C:\Users\jalva\Documents\Herramientas\obj\Debug\5.Herramientas.csproj.CoreCompileInputs.cache
+C:\Users\jalva\Documents\Herramientas\obj\Debug\Herramientas.dll
+C:\Users\jalva\Documents\Herramientas\obj\Debug\Herramientas.pdb
+C:\Users\jalva\Documents\Herramientas\obj\Debug\5.Herramientas.csprojAssemblyReference.cache

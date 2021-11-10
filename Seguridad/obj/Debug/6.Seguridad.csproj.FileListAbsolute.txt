@@ -1,0 +1,17 @@
+C:\Users\jalva\OneDrive\Documentos\Seguridad\bin\Debug\Seguridad.dll
+C:\Users\jalva\OneDrive\Documentos\Seguridad\bin\Debug\Seguridad.pdb
+C:\Users\jalva\OneDrive\Documentos\Seguridad\obj\Debug\6.Seguridad.csprojAssemblyReference.cache
+C:\Users\jalva\OneDrive\Documentos\Seguridad\obj\Debug\Seguridad.dll
+C:\Users\jalva\OneDrive\Documentos\Seguridad\obj\Debug\Seguridad.pdb
+C:\Users\jalva\OneDrive\Documentos\Seguridad\obj\Debug\6.Seguridad.csproj.CoreCompileInputs.cache
+Z:\Seguridad\bin\Debug\Seguridad.dll
+Z:\Seguridad\bin\Debug\Seguridad.pdb
+Z:\Seguridad\obj\Debug\6.Seguridad.csproj.CoreCompileInputs.cache
+Z:\Seguridad\obj\Debug\Seguridad.dll
+Z:\Seguridad\obj\Debug\Seguridad.pdb
+C:\Users\jalva\Documents\Seguridad\bin\Debug\Seguridad.dll
+C:\Users\jalva\Documents\Seguridad\bin\Debug\Seguridad.pdb
+C:\Users\jalva\Documents\Seguridad\obj\Debug\6.Seguridad.csproj.CoreCompileInputs.cache
+C:\Users\jalva\Documents\Seguridad\obj\Debug\Seguridad.dll
+C:\Users\jalva\Documents\Seguridad\obj\Debug\Seguridad.pdb
+C:\Users\jalva\Documents\Seguridad\obj\Debug\6.Seguridad.csprojAssemblyReference.cache

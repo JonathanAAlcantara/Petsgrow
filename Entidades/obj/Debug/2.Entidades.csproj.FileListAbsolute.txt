@@ -1,0 +1,17 @@
+C:\Users\jalva\OneDrive\Documentos\Entidades\bin\Debug\Entidades.dll
+C:\Users\jalva\OneDrive\Documentos\Entidades\bin\Debug\Entidades.pdb
+C:\Users\jalva\OneDrive\Documentos\Entidades\obj\Debug\2.Entidades.csprojAssemblyReference.cache
+C:\Users\jalva\OneDrive\Documentos\Entidades\obj\Debug\Entidades.dll
+C:\Users\jalva\OneDrive\Documentos\Entidades\obj\Debug\Entidades.pdb
+C:\Users\jalva\OneDrive\Documentos\Entidades\obj\Debug\2.Entidades.csproj.CoreCompileInputs.cache
+Z:\Entidades\bin\Debug\Entidades.dll
+Z:\Entidades\bin\Debug\Entidades.pdb
+Z:\Entidades\obj\Debug\2.Entidades.csproj.CoreCompileInputs.cache
+Z:\Entidades\obj\Debug\Entidades.dll
+Z:\Entidades\obj\Debug\Entidades.pdb
+C:\Users\jalva\Documents\Entidades\bin\Debug\Entidades.dll
+C:\Users\jalva\Documents\Entidades\bin\Debug\Entidades.pdb
+C:\Users\jalva\Documents\Entidades\obj\Debug\2.Entidades.csproj.CoreCompileInputs.cache
+C:\Users\jalva\Documents\Entidades\obj\Debug\Entidades.dll
+C:\Users\jalva\Documents\Entidades\obj\Debug\Entidades.pdb
+C:\Users\jalva\Documents\Entidades\obj\Debug\2.Entidades.csprojAssemblyReference.cache
