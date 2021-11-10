@@ -1,0 +1,13 @@
+C:\Users\jalva\Documents\EnvioCorreo\bin\Debug\EnvioCorreo.exe.config
+C:\Users\jalva\Documents\EnvioCorreo\bin\Debug\EnvioCorreo.exe
+C:\Users\jalva\Documents\EnvioCorreo\bin\Debug\EnvioCorreo.pdb
+C:\Users\jalva\Documents\EnvioCorreo\bin\Debug\Seguridad.dll
+C:\Users\jalva\Documents\EnvioCorreo\bin\Debug\Seguridad.pdb
+C:\Users\jalva\Documents\EnvioCorreo\obj\Debug\EnvioCorreo.csprojAssemblyReference.cache
+C:\Users\jalva\Documents\EnvioCorreo\obj\Debug\EnvioCorreo.Form1.resources
+C:\Users\jalva\Documents\EnvioCorreo\obj\Debug\EnvioCorreo.Properties.Resources.resources
+C:\Users\jalva\Documents\EnvioCorreo\obj\Debug\EnvioCorreo.csproj.GenerateResource.cache
+C:\Users\jalva\Documents\EnvioCorreo\obj\Debug\EnvioCorreo.csproj.CoreCompileInputs.cache
+C:\Users\jalva\Documents\EnvioCorreo\obj\Debug\EnvioCorreo.csproj.CopyComplete
+C:\Users\jalva\Documents\EnvioCorreo\obj\Debug\EnvioCorreo.exe
+C:\Users\jalva\Documents\EnvioCorreo\obj\Debug\EnvioCorreo.pdb
